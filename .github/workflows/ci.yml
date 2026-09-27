@@ -113,7 +113,7 @@ jobs:
 
       - name: Upload add-on previews
         if: ${{ hashFiles('addons/*.py') != '' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: addon-previews
           path: renders/*.png
