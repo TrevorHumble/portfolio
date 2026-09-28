@@ -78,9 +78,10 @@ powershell -File tools/stop-run.ps1                  # emergency brake (or creat
 | `standards/` | Authoring + review standards (adversarial protocol, design-philosophy, …) |
 | `.githooks/` | The commit gate (`pre-commit`) |
 | `.claude/` | Hooks (goal gate, loop gate), settings, the `/build` command |
-| `setup.ps1` · `tools/` | one-time setup (root `setup.ps1`); `check-enforcement`, `setup-hooks`, `check-gate`, `review_verdict`, `start-run`, `stop-run` |
+| `setup.ps1` · `tools/` | one-time setup (root `setup.ps1`); `check-enforcement`, `setup-hooks`, `check-gate`, `review_verdict`, `start-run`, `stop-run`, `check_site_assets` |
 | `tests/` · `evals/` | Dependency-free test + eval harness (with the example add-ons) |
 | `.github/workflows/` | CI (`ci.yml`) + CodeQL (`codeql.yml`) |
+| `site/` | The portfolio web page (`index.html`) and its pictures (`img/`) |
 | `DESIGN.md` · `PLAN.md` · `BUILDLOG.md` | Design rationale · build plan · running log |
 
 Full design rationale: **[DESIGN.md](DESIGN.md)**. Plain-language "what a green build proves": **[WHAT-IT-CHECKS.md](WHAT-IT-CHECKS.md)**.

@@ -8,8 +8,9 @@ on:
 #   if: ${{ hashFiles('addons/*.py') != '' }}
 # so that when you DELETE the bundled example (addons/ + tests/ + evals/) to start
 # your own project, CI stays GREEN instead of red-failing on missing paths. The
-# commit-gate integrity check always runs. When you add your own code, add your
-# own test/lint steps here (or have the orchestrator do it).
+# commit-gate integrity check, the site asset check and its tests always run.
+# When you add your own code, add your own test/lint steps here (or have the
+# orchestrator do it).
 
 jobs:
   lint:
@@ -28,6 +29,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
+      - name: Site asset check
+        run: python tools/check_site_assets.py
 
       - name: Install lint + security tools
         if: ${{ hashFiles('addons/*.py') != '' }}
@@ -49,6 +53,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
+      - name: Site asset tests
+        run: python tools/test_check_site_assets.py
 
       - name: Pure geometry test (bpy-free)
         if: ${{ hashFiles('addons/*.py') != '' }}

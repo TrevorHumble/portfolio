@@ -37,6 +37,7 @@ addons/                            — example add-ons that prove the pipeline e
 tests/                             — dependency-free headless test harness (run_pure.py, run_headless.py, run_tests.ps1)
 evals/                             — deterministic + Claude-as-judge eval harness (cases.py, run_evals.py, judge.md)
 issues/                            — issue files (NNNN-*.md); the GitHub board owns their status
+site/                              - the portfolio web page (index.html) and its pictures (img/)
 .github/workflows/ci.yml           — CI pipeline; runs on every push and PR
 .claude/commands/build.md          — /build slash command that triggers a pipeline run
 .claude/settings.json              — Claude Code settings
@@ -346,6 +347,8 @@ into the runner and executes these gates in order (adapt the list when you repla
 
 Each step fails the job on a non-zero exit (default shell behaviour). In-license: free runtime
 download; no Codecov, Coveralls, or any hosted coverage/eval SaaS.
+
+CI also always runs tools/check_site_assets.py in the lint job, which checks that every picture site/index.html references exists under site/img/ and that no unused pictures are stored there, and tools/test_check_site_assets.py in the test job, which proves that check catches a missing and an extra picture. Known limit: a picture link that contains a space or a % sign is not recognised, so the picture it names is reported as unused and such a link to a missing picture is not caught; a link inside an HTML comment still counts as a reference. Name pictures with letters, digits, underscores, dots and hyphens only.
 
 ## Evals
 

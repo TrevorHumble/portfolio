@@ -18,6 +18,8 @@ When the checks pass (the green checkmark on a build), these things have been co
 
 - **The code is auto-checked for cleanliness.** Two tools (ruff and bandit) automatically flag sloppy or unsafe code patterns before a change is committed — so what's built starts clean and stays clean.
 
+- **Every picture the portfolio page uses is in the repo.** Every build confirms each picture the page names is present in site/img/, and that no unused pictures are stored there. (Picture names with spaces or % signs are not checked, and a link inside an HTML comment still counts as a use.)
+
 These run on their own, the same way every time, on every build. You don't have to ask for them or stand over them.
 
 ---

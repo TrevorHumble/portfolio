@@ -1,0 +1,1061 @@
+<title>Trevor Humble</title>
+<meta name="description" content="Trevor Humble: technical product manager for AI and the MyUI student portal at the University of Idaho, maker of Blender tools and 3D art.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  :root {
+    --paper: #EEF0EB;
+    --surface: #F8F9F6;
+    --ink: #151815;
+    --ink-2: #545B55;
+    --rule: #CCD2C9;
+    --accent: #1D4F91;
+    --shade: rgba(21, 24, 21, 0.07);
+    --scrim: rgba(14, 16, 14, 0.9);
+    --display: "Archivo", "Arial Narrow", Arial, sans-serif;
+    --body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    color-scheme: light;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 1rem/1.6 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: clamp(16px, 4vw, 48px);
+  }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  img { display: block; height: auto; }
+  [hidden] { display: none !important; }
+  h1, h2, h3 { margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+
+  .label {
+    font: 500 0.72rem/1.3 var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+
+  /* Top bar */
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding-block: 20px;
+  }
+  .topbar nav { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+  .topbar nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font: 500 0.8rem/1 var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .topbar nav a:hover { color: var(--accent); }
+  .home-link { text-decoration: none; }
+  .home-link:hover { color: var(--accent); }
+
+  /* Hero */
+  .hero { padding-block: clamp(24px, 6vw, 64px) clamp(40px, 7vw, 80px); display: grid; gap: clamp(20px, 3vw, 32px); }
+  .name {
+    font-family: var(--display);
+    font-variation-settings: "wdth" 125;
+    font-weight: 820;
+    font-size: clamp(3.4rem, 14.5vw, 10.5rem);
+    line-height: 0.86;
+    letter-spacing: -0.025em;
+  }
+  .name span { display: block; }
+  .name span + span { color: var(--ink-2); }
+  .lede {
+    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+    line-height: 1.5;
+    max-width: 44ch;
+  }
+  .strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(8px, 1.5vw, 16px); margin-top: 8px; }
+  .strip a { display: grid; gap: 8px; text-decoration: none; color: var(--ink); }
+  .strip img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 3px;
+    background: var(--surface);
+    transition: transform 0.25s ease;
+  }
+  .strip a:hover img { transform: translateY(-3px); }
+  .strip .kind { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+  .strip .what { font-size: 0.9rem; color: var(--ink-2); }
+
+  /* Sections */
+  section { border-top: 2px solid var(--ink); padding-block: clamp(40px, 7vw, 88px); }
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin-bottom: clamp(24px, 4vw, 40px);
+  }
+  .section-head h2 {
+    font-family: var(--display);
+    font-variation-settings: "wdth" 112;
+    font-weight: 760;
+    font-size: clamp(2rem, 4.6vw, 3.4rem);
+    line-height: 1;
+    letter-spacing: -0.015em;
+  }
+
+  /* MyUI case study */
+  .case { display: grid; gap: clamp(24px, 4vw, 48px); grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 860px) { .case { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); } }
+  .facts { display: grid; gap: 14px; margin: 0; align-content: start; }
+  .facts div { display: grid; gap: 2px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+  .facts dt { font: 500 0.72rem/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
+  .facts dd { margin: 0; }
+  .prose { display: grid; gap: 1em; max-width: 64ch; font-size: 1.05rem; }
+
+  .viewer { margin: clamp(28px, 4vw, 44px) 0 0; display: grid; gap: 12px; }
+  .viewer-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px 20px; }
+  .toggle { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; padding: 3px; background: var(--surface); }
+  .toggle button {
+    font: 500 0.8rem/1 var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 0;
+    border-radius: 999px;
+    padding: 9px 16px;
+    background: transparent;
+    color: var(--ink-2);
+    cursor: pointer;
+  }
+  .toggle button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .shot {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 14px 40px -24px var(--shade);
+  }
+  .shot img { width: 100%; }
+  .viewer figcaption, .figure figcaption { font-size: 0.92rem; color: var(--ink-2); }
+
+  .sub {
+    font-family: var(--display);
+    font-variation-settings: "wdth" 108;
+    font-weight: 700;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    line-height: 1.15;
+  }
+  .rules { margin-top: clamp(36px, 5vw, 56px); display: grid; gap: 18px; }
+  .rules-grid { display: grid; gap: 20px clamp(20px, 3vw, 40px); grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 820px) { .rules-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .rules-grid > div { border-top: 1px solid var(--rule); padding-top: 12px; display: grid; gap: 6px; align-content: start; }
+  .rules-grid h4 { margin: 0; font-size: 1rem; font-weight: 600; }
+  .rules-grid p { color: var(--ink-2); }
+  .templates {
+    margin-top: clamp(36px, 5vw, 56px);
+    padding: clamp(16px, 3vw, 32px);
+    background: var(--surface);
+    border-radius: 4px;
+    display: grid;
+    gap: clamp(16px, 2.5vw, 24px);
+  }
+  .templates-head { display: grid; gap: 6px; }
+  .templates-head p { color: var(--ink-2); }
+  .tpl-grid { display: grid; gap: clamp(12px, 2vw, 22px); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 760px) { .tpl-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .tpl-grid figure { margin: 0; display: grid; gap: 8px; }
+  .tpl-grid img { width: 100%; border-radius: 4px; box-shadow: 0 6px 20px -12px var(--shade); }
+
+  /* Projects */
+  .feature { display: grid; gap: clamp(20px, 3vw, 40px); grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 900px) { .feature { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: start; } }
+  .feature > img, .pair img { width: 100%; border-radius: 4px; }
+  .proj { display: grid; gap: 16px; align-content: start; }
+  .proj h3 {
+    font-family: var(--display);
+    font-variation-settings: "wdth" 110;
+    font-weight: 740;
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    line-height: 1.05;
+  }
+  .tb { display: grid; grid-auto-flow: column; justify-content: start; border-top: 2px solid var(--ink); font: 500 0.75rem/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
+  .tb div { display: grid; gap: 3px; padding: 7px 28px 0 0; }
+  .tb span { font-size: 0.64rem; font-weight: 400; color: var(--ink-2); }
+  .tb strong { font-weight: 500; }
+  .spec { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 18px; }
+  .spec > div { border-top: 1px solid var(--rule); padding: 8px 14px 0; }
+  .spec > div:nth-child(2n+1) { padding-left: 0; }
+  .spec > div:not(:nth-child(2n+1)) { box-shadow: inset 1px 0 0 var(--rule); }
+  .spec p { margin: 2px 0 0; font: 500 1.3rem/1.2 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; }
+  .spec small { display: block; margin-top: 3px; font: 400 0.7rem/1.3 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-2); }
+  .spec > div:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .spec.one { grid-template-columns: minmax(0, 1fr); }
+  .spec.one > div { box-shadow: none; padding-left: 0; }
+  @media (min-width: 760px) {
+    .spec.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .spec.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .spec.three > div:last-child, .spec.four > div:last-child { grid-column: auto; }
+    .spec.four > div:nth-child(n), .spec.three > div:nth-child(n) { padding-left: 14px; box-shadow: inset 1px 0 0 var(--rule); }
+    .spec.four > div:nth-child(4n+1), .spec.three > div:nth-child(3n+1) { padding-left: 0; box-shadow: none; }
+  }
+  .spec-h { display: block; margin-bottom: 8px; font: 500 0.72rem/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
+  .std-body .spec-wrap { grid-column: 1 / -1; }
+  .spec span { display: block; margin-bottom: 6px; font: 400 0.64rem/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
+  .spec ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font: 500 0.78rem/1.3 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; }
+  .numbers { margin: 4px 0 0; display: grid; gap: 0; border-top: 1px solid var(--rule); }
+  .numbers div { display: flex; justify-content: space-between; gap: 16px; padding-block: 9px; border-bottom: 1px solid var(--rule); }
+  .numbers dt { color: var(--ink-2); font-size: 0.92rem; }
+  .numbers dd { margin: 0; font: 500 0.95rem/1.4 var(--mono); font-variant-numeric: tabular-nums; }
+  .pair { display: grid; gap: clamp(12px, 2vw, 24px); grid-template-columns: minmax(0, 1fr); margin-top: clamp(16px, 2.5vw, 28px); }
+  @media (min-width: 700px) { .pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .pair figure { margin: 0; display: grid; gap: 8px; }
+  .pair img { aspect-ratio: 16 / 9; object-fit: cover; }
+  .pair figcaption { font-size: 0.92rem; color: var(--ink-2); }
+
+  .more {
+    display: inline-block;
+    font: 500 0.8rem/1 var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1.5px solid var(--ink);
+    border-radius: 3px;
+    padding: 12px 18px;
+  }
+  .more:hover { background: var(--ink); color: var(--paper); }
+  .media { display: grid; gap: 16px; align-content: start; justify-items: start; }
+  .media img { width: 100%; border-radius: 4px; }
+
+  /* Flatland page */
+  .back { margin: 8px 0 0; }
+  .back a { font: 500 0.8rem/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; }
+  .back a::before { content: "\2190\00a0"; }
+  .fl-head { display: grid; gap: 16px; padding-block: clamp(20px, 4vw, 40px) clamp(24px, 4vw, 40px); }
+  .fl-head > .spec { max-width: 560px; }
+  .fl-head .lede { max-width: none; }
+  .hero .lede { max-width: none; }
+  .fl-title {
+    font-family: var(--display);
+    font-variation-settings: "wdth" 125;
+    font-weight: 820;
+    font-size: clamp(3rem, 11vw, 7.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.025em;
+  }
+  .fl-shot { width: 100%; border-radius: 4px; }
+  .fl-sec { border-top: 2px solid var(--ink); margin-top: clamp(40px, 6vw, 72px); padding-block: clamp(32px, 5vw, 56px) 0; }
+  .gifs { display: grid; gap: clamp(16px, 3vw, 32px); grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 820px) { .gifs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .gifs figure { margin: 0; display: grid; gap: 10px; }
+  .gifs img { width: 100%; border-radius: 4px; background: #0d0d0d; }
+  .gifs figcaption { color: var(--ink-2); }
+  .gifs .t { color: var(--ink); font-weight: 600; margin-right: 6px; }
+  .groups { display: grid; gap: 24px clamp(20px, 3vw, 40px); grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 700px) { .groups { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1040px) { .groups { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .groups > div { border-top: 1px solid var(--rule); padding-top: 12px; }
+  .groups h3 { font: 500 0.72rem/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 8px; }
+  .groups ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; }
+  .also { margin-top: clamp(20px, 3vw, 32px); display: grid; gap: 6px; padding-left: 1.2em; color: var(--ink-2); }
+  .proto-grid { display: grid; gap: clamp(12px, 2vw, 22px); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 820px) { .proto-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .proto-grid figure { margin: 0; display: grid; gap: 8px; align-content: start; }
+  .proto-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; background: #F1EEE6; }
+  .proto-grid figcaption { font-size: 0.92rem; color: var(--ink-2); }
+  .proto-grid img.contain { object-fit: contain; }
+  #flatland-view { padding-bottom: clamp(40px, 6vw, 72px); }
+
+  .next { margin-top: clamp(48px, 7vw, 88px); padding-top: clamp(32px, 5vw, 56px); border-top: 1px solid var(--rule); }
+  .note { font-size: 0.92rem; color: var(--ink-2); }
+  .wm { display: grid; gap: clamp(18px, 3vw, 28px); }
+  .wm-text { }
+  .phones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 2vw, 22px); }
+  @media (min-width: 700px) { .phones { grid-template-columns: repeat(4, minmax(0, 1fr)); } .phones.six { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 1100px) { .phones.six { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+  .phones figure { margin: 0; display: grid; gap: 8px; align-content: start; }
+  .phones img { box-sizing: border-box; width: 100%; border-radius: 16px; border: 1px solid var(--rule); box-shadow: 0 10px 30px -18px var(--shade); }
+
+  /* Art */
+  .art-intro { margin-bottom: clamp(20px, 3vw, 32px); font-size: 1.05rem; }
+  .art { display: grid; gap: clamp(12px, 2vw, 24px) clamp(10px, 1.6vw, 20px); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 820px) { .art { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .art figure { margin: 0; display: grid; gap: 8px; align-content: start; }
+  .art img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 3px; background: var(--surface); }
+  .art figcaption { display: grid; gap: 2px; }
+  .art .t { font-weight: 600; line-height: 1.3; }
+
+  /* About */
+  .about { display: grid; gap: clamp(24px, 4vw, 48px); grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 860px) { .about { grid-template-columns: minmax(0, 3fr) minmax(0, 5fr) minmax(0, 4fr); } }
+  .headshot { width: 100%; max-width: 280px; aspect-ratio: 1; object-fit: cover; border-radius: 4px; }
+  .contact { margin: 0; display: grid; gap: 14px; align-content: start; }
+  .contact div { display: grid; gap: 2px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+  .contact dt { font: 500 0.72rem/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
+  .contact dd { margin: 0; overflow-wrap: anywhere; }
+  .todo { color: var(--ink-2); font-style: italic; }
+
+  footer { padding-block: 0 40px; }
+  footer .wrap > * { display: block; border-top: 2px solid var(--ink); padding-top: 20px; }
+
+  /* Art pages */
+  .art-tile { display: grid; gap: 4px; text-decoration: none; color: var(--ink); align-content: start; }
+  .art-tile img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 3px; background: var(--surface); transition: transform 0.25s ease; }
+  .art-tile:hover img { transform: translateY(-3px); }
+  .art-tile .t { font-weight: 600; line-height: 1.3; margin-top: 4px; }
+  .art-more { margin-top: clamp(24px, 4vw, 36px); }
+  #art-view { padding-bottom: clamp(40px, 6vw, 72px); }
+  #art-view .pager { padding-bottom: 0; }
+  .filters { margin-bottom: clamp(20px, 3vw, 32px); flex-wrap: wrap; }
+  .art-head { gap: 14px; }
+  .art-head .spec { max-width: 72ch; }
+  .art-title {
+    font-family: var(--display);
+    font-variation-settings: "wdth" 112;
+    font-weight: 780;
+    font-size: clamp(2.2rem, 6vw, 4.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+  }
+  .vid { aspect-ratio: 16 / 9; background: var(--shade); border-radius: 4px; overflow: hidden; }
+  .vid iframe { display: block; width: 100%; height: 100%; border: 0; }
+  .art-pics { display: grid; gap: clamp(14px, 2.5vw, 28px); justify-items: start; }
+  .art-pics figure { margin: 0; width: 100%; }
+  .art-pics img { display: block; width: auto; max-width: 100%; max-height: 88vh; border-radius: 4px; background: var(--surface); }
+  .pager { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: clamp(36px, 5vw, 56px); border-top: 1px solid var(--rule); padding-top: 20px; padding-bottom: clamp(32px, 5vw, 56px); }
+  .pager a { display: grid; gap: 4px; text-decoration: none; color: var(--ink); }
+  .pager a + a { text-align: right; }
+  .pager .t { font-weight: 600; }
+  @media (prefers-reduced-motion: reduce) { .art-tile img { transition: none; } .art-tile:hover img { transform: none; } }
+
+  /* One shape for every project on the home page */
+  .std { display: grid; gap: clamp(16px, 2.5vw, 24px); justify-items: start; }
+  .std > * { justify-self: stretch; min-width: 0; }
+  .std > .more { justify-self: start; }
+  .std > .tb + .std-title { margin-top: -8px; }
+  .std.next { margin-top: clamp(48px, 7vw, 88px); padding-top: 0; border-top: 0; }
+  #work, #wedding, #blender { border-top: 0; }
+  section > .tb { margin-bottom: clamp(16px, 2.5vw, 24px); }
+  .std-title {
+    font-family: var(--display);
+    font-variation-settings: "wdth" 110;
+    font-weight: 740;
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    line-height: 1.05;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+  }
+  .std-hero img { width: 100%; border-radius: 4px; }
+  .std-hero.shot img { border-radius: 0; }
+  .std-body { display: grid; gap: 20px clamp(24px, 4vw, 48px); grid-template-columns: minmax(0, 1fr); }
+  .std-summary { font-size: 1.05rem; }
+  .std-body .numbers { margin: 0; }
+  .std-hero .phones img { border-radius: 16px; }
+  .page-title { font-size: clamp(2.6rem, 8vw, 6rem); }
+  .page-view { padding-bottom: clamp(40px, 6vw, 72px); }
+  .std .viewer { margin: 0; }
+  .page-view .viewer, .page-view .rules, .page-view .templates { margin-top: clamp(36px, 5vw, 56px); }
+  .page-numbers { margin-top: 20px; }
+
+  /* Before and after slider */
+  .compare { position: relative; overflow: hidden; border-radius: 4px; background: #111; --pos: 50%; }
+  .compare img { display: block; width: 100%; height: auto; border-radius: 0; }
+  .compare-top { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+  .compare-top img { width: 100%; height: 100%; object-fit: cover; }
+  .compare-range { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; touch-action: pan-y; }
+  .compare-handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35); pointer-events: none; }
+  .compare-handle::after {
+    content: ""; position: absolute; top: 50%; left: 50%; width: 38px; height: 38px; margin: -19px 0 0 -19px;
+    border-radius: 50%; border: 2px solid #fff; background: rgba(0, 0, 0, 0.45);
+  }
+  .compare-range:focus-visible ~ .compare-handle::after { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .compare-label {
+    position: absolute; bottom: 12px; pointer-events: none;
+    font: 500 0.72rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase;
+    color: #fff; background: rgba(0, 0, 0, 0.6); padding: 6px 9px; border-radius: 3px;
+  }
+  .compare-label.left { left: 12px; }
+  .compare-label.right { right: 12px; }
+
+  /* Wedding Master numbers */
+  .wm-stats { display: grid; gap: 14px; margin-top: 24px; }
+  .spec small.src a { color: inherit; text-transform: none; letter-spacing: 0; font-family: var(--body); font-size: 0.8rem; }
+  .wm-stats a { color: inherit; }
+  
+  /* Goals, shared by the project pages */
+  .goal-lead { font-size: 1.05rem; margin-bottom: 8px; }
+  .goals { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 0 clamp(24px, 4vw, 48px); grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 820px) { .goals { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1100px) { .goals { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: auto auto 1fr; } .goals > li { grid-row: span 3; grid-template-rows: subgrid; gap: 8px; } }
+  .goals > li { border-top: 1px solid var(--rule); padding-block: 18px 22px; display: grid; gap: 8px; align-content: start; }
+  .goals h3 { font-family: var(--display); font-variation-settings: "wdth" 110; font-weight: 700; font-size: 1.2rem; line-height: 1.15; }
+  .goal-mark { font: 500 0.75rem/1 var(--mono); letter-spacing: 0.08em; color: var(--ink-2); }
+
+  /* Zoom */
+  [data-zoom] { cursor: zoom-in; }
+  dialog.zoom {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    max-width: 100vw;
+    max-height: 100vh;
+    width: 100vw;
+    height: 100%;
+  }
+  dialog.zoom::backdrop { background: var(--scrim); }
+  dialog.zoom .zoom-inner { display: grid; place-items: center; height: 100%; padding: 16px; box-sizing: border-box; cursor: zoom-out; }
+  dialog.zoom img { max-width: 100%; max-height: calc(100vh - 80px); width: auto; border-radius: 3px; }
+  dialog.zoom p { color: #E6EAE4; font-size: 0.9rem; margin-top: 10px; text-align: center; }
+
+  @media (max-width: 520px) {
+    .strip .what { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .strip img { transition: none; }
+    .strip a:hover img { transform: none; }
+  }
+  /* Viewport shading: Z switches between Wireframe, Solid and Material, like Blender */
+  .shade-bar { position: fixed; right: 16px; bottom: 16px; z-index: 50; display: flex; align-items: center; gap: 2px; padding: 4px; border-radius: 8px; background: #2b2b2b; box-shadow: 0 8px 24px -10px rgba(0,0,0,.6); font: 500 11px/1 var(--mono); color: #cfcfcf; }
+  .shade-bar button { width: 30px; height: 26px; border: 0; border-radius: 5px; background: #3d3d3d; display: grid; place-items: center; cursor: pointer; padding: 0; }
+  .shade-bar button[aria-pressed="true"] { background: #4772b3; }
+  .shade-bar svg { width: 16px; height: 16px; }
+  .shade-bar .hint { padding: 0 8px 0 6px; letter-spacing: .06em; text-transform: uppercase; }
+  .shade-bar kbd { font: inherit; border: 1px solid #5a5a5a; border-radius: 3px; padding: 1px 4px; margin-left: 4px; }
+  html.wire, html.wire body { background: #232323 !important; }
+  html.wire body { background-image: linear-gradient(#2e2e2e 1px, transparent 1px), linear-gradient(90deg, #2e2e2e 1px, transparent 1px) !important; background-size: 40px 40px !important; color: #9a9a9a; }
+  html.wire *:not(.shade-bar):not(.shade-bar *):not(.z-tag) { color: #a6a6a6 !important; border-color: #5c5c5c !important; background-color: transparent !important; box-shadow: none !important; text-decoration-color: #5c5c5c; }
+  html.wire .wrap *:not(svg *):not(br) { outline: 1px solid rgba(255,255,255,.14); outline-offset: -1px; }
+  html.wire img, html.wire iframe, html.wire video { filter: none; opacity: 1; }
+  
+  html.wire .wrap *.z-hot { outline: 2px solid #f5a623 !important; outline-offset: -2px; }
+  html.wire h1, html.wire h2, html.wire .fl-title, html.wire .std-title { color: #d6d6d6 !important; }
+  .z-tag { position: fixed; z-index: 60; pointer-events: none; font: 500 11px/1 var(--mono); color: #1c1c1c; background: #f5a623; padding: 4px 6px; border-radius: 2px; white-space: nowrap; display: none; }
+  html.wire .z-tag { display: block; }
+  html.solid img:not(.shade-bar img), html.solid iframe { filter: grayscale(1) contrast(.85) brightness(1.08); }
+  html.solid .phones img, html.solid .std-hero img { filter: grayscale(1) contrast(.8) brightness(1.1) sepia(.08); }
+  html.wire *, html.solid img { transition: none; }
+  html.zfade body { animation: zfade .35s ease; }
+  @keyframes zfade { from { opacity: .35; } to { opacity: 1; } }
+</style>
+
+<div class="wrap">
+  <div class="topbar" id="top">
+    <a class="label home-link" href="#top">Portfolio</a>
+    <nav aria-label="Sections">
+      <a href="#work">MyUI</a>
+      <a href="#wedding">Wedding Master</a>
+      <a href="#blender">Blender tools</a>
+      <a href="#art">Design</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+
+  <div id="home-view">
+  <header class="hero">
+    <h1 class="name"><span>Trevor</span><span>Humble</span></h1>
+    <p class="lede">Technical product manager for AI and the MyUI student portal at the University of Idaho. I also build tools for Blender and make 3D art.</p>
+    <div class="strip">
+      <a href="#work">
+        <img src="img/myui-after-1.jpg" alt="New MyUI cards with illustrated banners" width="1800" height="824" style="object-position: 22% 50%">
+        <span class="kind"><span class="label">Product</span><span class="what">MyUI redesign</span></span>
+      </a>
+      <a href="#blender">
+        <img src="img/flatland-cube-v3.svg" alt="Blender&rsquo;s default cube rising over the sea like the sun, drawn in Flatland" width="1600" height="1200">
+        <span class="kind"><span class="label">Tool</span><span class="what">Flatland</span></span>
+      </a>
+      <a href="#art-DAnGqo">
+        <img src="img/art-liminal-fields.jpg" alt="Liminal Fields: a hand-painted station wagon on a road below storm clouds" width="1200" height="675" style="object-position: 45% 50%">
+        <span class="kind"><span class="label">Design</span><span class="what">Liminal Fields</span></span>
+      </a>
+    </div>
+  </header>
+
+  <section id="work" aria-labelledby="work-h">
+    <div class="tb"><div><span>Type</span><strong>Product</strong></div><div><span>Status</span><strong>Continued support</strong></div></div>
+    <div class="section-head">
+      <h2 id="work-h">MyUI redesign</h2>
+      <span class="label">University of Idaho &middot; 2025</span>
+    </div>
+    <div class="std">
+      <figure class="viewer std-hero">
+      <div class="viewer-bar">
+        <div class="toggle" role="group" aria-label="Show the portal">
+          <button type="button" id="show-before" data-show="before" aria-pressed="false">Before</button>
+          <button type="button" id="show-wireframe" data-show="wireframe" aria-pressed="false">Wireframe</button>
+          <button type="button" id="show-after" data-show="after" aria-pressed="true">After</button>
+        </div>
+        <span class="label">Click a picture to enlarge it</span>
+      </div>
+      <div class="shot">
+        <img data-view="before" data-zoom hidden src="img/myui-before.jpg" alt="The MyUI home page before the redesign" width="1800" height="941">
+        <img data-view="wireframe" data-zoom hidden src="img/myui-wireframe.jpg" alt="The MyUI wireframe, with the new layout before the banner art" width="1553" height="974">
+        <img data-view="after" data-zoom src="img/myui-after-1.jpg" alt="The MyUI home page after the redesign" width="1800" height="824">
+      </div>
+      <figcaption id="viewer-cap">After: every card has the same layout, with a banner illustration on top.</figcaption>
+    </figure>
+      <div class="std-body">
+        <p class="std-summary">MyUI is the portal where University of Idaho students and staff go for registration, grades, financial aid, pay and campus services. I led its redesign as product manager, did the UI/UX design and built the cards myself.</p>
+        <div class="spec-wrap"><span class="spec-h">Stats</span><div class="spec three"><div><span>Cards redesigned</span><p>47</p><small>In under six months</small></div><div><span>Feedback</span><p>4 to 1</p><small>Positive to negative</small></div><div><span>Survey responses</span><p>2,000+</p></div></div></div>
+      </div>
+      <a class="more" href="#myui">Learn more</a>
+    </div>
+  </section>
+
+  <section id="wedding" aria-labelledby="wedding-h">
+    <div class="tb"><div><span>Type</span><strong>Application</strong></div><div><span>Status</span><strong>Continued support</strong></div></div>
+    <div class="section-head">
+      <h2 id="wedding-h">Wedding Master</h2>
+    </div>
+    <div class="std">
+      <div class="std-hero">
+      <div class="phones">
+        <figure><img data-zoom src="img/wm-real-tasks.jpg" alt="Wedding Master: the task list, with points for each photo task" width="585" height="1266" loading="lazy"><figcaption class="label">Tasks</figcaption></figure>
+        <figure><img data-zoom src="img/wm-real-gallery.jpg" alt="Wedding Master: the shared gallery of guests' photos" width="585" height="1266" loading="lazy"><figcaption class="label">Gallery</figcaption></figure>
+        <figure><img data-zoom src="img/wm-real-leaderboard.jpg" alt="Wedding Master: the leaderboard, with the top three on a podium" width="585" height="1266" loading="lazy"><figcaption class="label">Leaderboard</figcaption></figure>
+        <figure><img data-zoom src="img/wm-real-profile.jpg" alt="Wedding Master: my profile, with points, progress and badges" width="585" height="1266" loading="lazy"><figcaption class="label">Profile and badges</figcaption></figure>
+      </div>
+      </div>
+      <div class="std-body">
+        <p class="std-summary">A photo game I built for a wedding of about 100 guests. Guests scanned one QR code, signed up without a password and earned points for photo tasks. It has badges, a leaderboard, a shared gallery and an end-of-night slideshow, and the host runs it all from an admin page.</p>
+        <div class="spec-wrap"><span class="spec-h">Stats</span><div class="spec four"><div><span>Guests who joined</span><p>49</p><small>Of about 100</small></div><div><span>Posted, liked or commented</span><p>63%</p><small>Self-serve software: 34.6%</small></div><div><span>Posted a photo</span><p>47%</p><small>Typical community: 10%</small></div><div><span>Players who liked each photo</span><p>4.5%</p><small>Instagram brand posts: 0.36%</small></div></div></div>
+      </div>
+      <a class="more" href="#wedding-master">Learn more</a>
+    </div>
+  </section>
+
+  <section id="blender" aria-labelledby="blender-h">
+    <div class="section-head">
+      <h2 id="blender-h">Blender tools</h2>
+    </div>
+    <div class="std">
+      <div class="tb"><div><span>Type</span><strong>Add-on</strong></div><div><span>Status</span><strong>In progress</strong></div></div>
+      <h3 class="std-title">Flatland</h3>
+      <div class="std-hero"><img data-zoom src="img/flatland-workspace-v3.jpg" alt="Flatland&rsquo;s Vector workspace in Blender, with the cube artwork open" width="1680" height="858"></div>
+      <div class="std-body">
+        <p class="std-summary">A Blender add-on and vector editor that enhances Blender&rsquo;s curve tools and utilizes its strengths for a whole new way to work with vector graphics.</p>
+        <div class="spec-wrap"><span class="spec-h">Features</span><div class="spec four" aria-label="What Flatland does today"><div><span>Draw</span><ul><li>Shape tools</li><li>Pen and freehand</li><li>Vector workspace</li></ul></div><div><span>Edit</span><ul><li>Bevel corners</li><li>Pathfinder</li><li>Shape Builder</li></ul></div><div><span>Style</span><ul><li>Gradients</li><li>Strokes</li><li>Type</li><li>True color</li></ul></div><div><span>Output</span><ul><li>SVG and PDF</li><li>Browser preview</li></ul></div></div></div>
+      </div>
+      <a class="more" href="#flatland">Learn more</a>
+    </div>
+    <div class="std next">
+      <div class="tb"><div><span>Type</span><strong>Add-on</strong></div><div><span>Status</span><strong>In progress</strong></div></div>
+      <h3 class="std-title">Scatter Camera</h3>
+      <div class="std-hero">
+        <div class="compare" style="--pos: 50%">
+          <img src="img/scatter-hero-after.jpg" alt="The view through the camera with Scatter Camera: grass only inside the camera's frame" width="1574" height="972">
+          <div class="compare-top"><img src="img/scatter-hero-before.jpg" alt="The same view with standard scatter: grass across the whole field" width="1574" height="972"></div>
+          <input class="compare-range" id="scatter-compare" type="range" min="0" max="100" value="50" aria-label="Slide to compare standard scatter with Scatter Camera">
+          <span class="compare-handle" aria-hidden="true"></span>
+          <span class="compare-label left" aria-hidden="true">Standard scatter</span>
+          <span class="compare-label right" aria-hidden="true">Scatter Camera</span>
+        </div>
+      </div>
+      <div class="std-body">
+        <p class="std-summary">A field of grass slows Blender down, and most of it never appears in the shot. Scatter Camera grows grass only where the active camera is looking. Blades are thickest near the camera and thin out over a distance you set, and a black-to-white ramp controls how they fade.</p>
+        <div class="spec-wrap"><span class="spec-h">Stats</span><div class="spec three"><div><span>Standard scatter</span><p>866,381 blades</p><small>Whole field</small></div><div><span>Scatter Camera</span><p>133,869 blades</p><small>Front shot</small></div><div><span>Visible blades missing</span><p>0</p></div></div></div>
+      </div>
+      <a class="more" href="#scatter-camera">Learn more</a>
+    </div>
+  </section>
+
+  <section id="art" aria-labelledby="art-h">
+    <div class="section-head">
+      <h2 id="art-h">Design</h2>
+      <span class="label">Animation, 3D, traditional and digital art</span>
+    </div>
+    <div class="art">
+      <a class="art-tile" href="#art-DAnGqo"><img src="img/art-liminal-fields.jpg" alt="Liminal Fields" width="600" height="600" loading="lazy"><span class="t">Liminal Fields</span><span class="label">2D animation</span></a>
+      <a class="art-tile" href="#art-xDmrgR"><img src="img/art-the-storm-tile.jpg" alt="The Storm" width="600" height="600" loading="lazy"><span class="t">The Storm</span><span class="label">3D animation</span></a>
+      <a class="art-tile" href="#art-zPkN3Q"><img src="img/art-pignite.jpg" alt="Realistic Pignite" width="600" height="600" loading="lazy"><span class="t">Realistic Pignite</span><span class="label">3D concept</span></a>
+      <a class="art-tile" href="#art-DvEoo0"><img src="img/art-aganee.jpg" alt="Aganee, Weaver of Light and Master of Time" width="600" height="600" loading="lazy"><span class="t">Aganee, Weaver of Light and Master of Time</span><span class="label">3D concept</span></a>
+      <a class="art-tile" href="#art-VJEGy4"><img src="img/art-rocky.jpg" alt="Rocky" width="600" height="600" loading="lazy"><span class="t">Rocky</span><span class="label">3D animation</span></a>
+      <a class="art-tile" href="#art-8bJnLQ"><img src="img/art-freedom-revolution.jpg" alt="Pok&#233;mon: Freedom and Revolution" width="600" height="600" loading="lazy"><span class="t">Pok&#233;mon: Freedom and Revolution</span><span class="label">3D animation</span></a>
+      <a class="art-tile" href="#art-8bK5zQ"><img src="img/art-fortlight.jpg" alt="FortLight" width="600" height="600" loading="lazy"><span class="t">FortLight</span><span class="label">3D game world</span></a>
+      <a class="art-tile" href="#art-PXQGa1"><img src="img/art/PXQGa1-cover.jpg" alt="Cycle Across Cuba" width="600" height="600" loading="lazy"><span class="t">Cycle Across Cuba</span><span class="label">Traditional art</span></a>
+    </div>
+    <p class="art-more"><a class="more" href="#art-all">See all</a></p>
+  </section>
+
+  <section id="about" aria-labelledby="about-h">
+    <div class="section-head">
+      <h2 id="about-h">About</h2>
+    </div>
+    <div class="about">
+      <img class="headshot" src="img/headshot.jpg" alt="Trevor Humble" width="727" height="727" loading="lazy">
+      <div class="prose">
+        <p>I&rsquo;m the technical product manager for AI applications and MyUI, the student portal, in the University of Idaho&rsquo;s Office of Information Technology.</p>
+        <p>Before that I was assistant director and technical product owner for financial aid. I led the product side of upgrading every financial aid system for the 2024&ndash;25 FAFSA Simplification Act, work that earned our team the university&rsquo;s Outstanding Team Award. I started in financial aid as a counselor in 2020.</p>
+        <p>Outside of work I build tools for Blender and make 3D art and animation. I&rsquo;m working on a master&rsquo;s in Integrated Architecture and Design, focused on animation and non-photorealistic rendering, and my animation Liminal Fields was shown at the Moscow Contemporary Art Gallery.</p>
+      </div>
+      <dl class="contact">
+        <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/trevor-humble/">linkedin.com/in/trevor-humble</a></dd></div>
+        <div><dt>GitHub</dt><dd><a href="https://github.com/TrevorHumble">github.com/TrevorHumble</a></dd></div>
+        <div><dt>Email</dt><dd><a href="mailto:contact@trevorhumble.com">contact@trevorhumble.com</a></dd></div>
+      </dl>
+    </div>
+  </section>
+  </div>
+
+  <div id="flatland-view" hidden>
+    <p class="back"><a href="#blender">Blender tools</a></p>
+
+    <header class="fl-head">
+      <div class="tb"><div><span>Type</span><strong>Add-on</strong></div><div><span>Status</span><strong>In progress</strong></div></div>
+      <h1 class="fl-title">Flatland</h1>
+      <p class="lede">A Blender add-on and vector editor that enhances Blender&rsquo;s curve tools and utilizes its strengths for a whole new way to work with vector graphics.</p>
+    </header>
+
+    <img class="fl-shot" data-zoom src="img/flatland-workspace-v3.jpg" alt="Flatland&rsquo;s Vector workspace in Blender, with the cube artwork open" width="1680" height="858">
+
+    <section class="fl-sec" aria-labelledby="fl-goals">
+      <div class="section-head"><h2 id="fl-goals">Core principles</h2></div>
+      <ol class="goals">
+          <li><span class="goal-mark">1</span><h3>The Tool is Accessible to All</h3><p>Blender natives have access to all the familiar hotkeys, tools, and nodes they have learned to love, and newcomers can find tools in familiar and intuitive locations.</p></li>
+          <li><span class="goal-mark">2</span><h3>First-of-Their-Kind Tools</h3><p>Turn a 3D scene into editable vector art, build artwork from nodes, and export animation as an SVG that plays in a browser.</p></li>
+          <li><span class="goal-mark">3</span><h3>Workflow Agnostic</h3><p>The work can be done from first shape to finished product inside Blender, or it can be easily ported into other tools for further editing and finishing.</p></li>
+          <li><span class="goal-mark">4</span><h3>Enhanced Blender Curves</h3><p>Shape building, path editing and vector bevels work on Blender&rsquo;s own curves.</p></li>
+      </ol>
+    </section>
+
+    <section class="fl-sec" aria-labelledby="fl-work">
+      <div class="section-head"><h2 id="fl-work">Demos</h2></div>
+      <div class="gifs">
+        <figure><img src="img/fl-demo-draw.gif" alt="Drawing a rectangle, ellipse, star and hexagon, then a path with the pen" width="800" height="467" loading="lazy"><figcaption><span class="t">Shapes and pen</span> Pick a tool and drag to draw, or click out a path with the pen. Every shape stays an editable curve.</figcaption></figure>
+        <figure><img src="img/fl-demo-type.gif" alt="Typing a word, then changing its font, weight, spacing and slant" width="800" height="467" loading="lazy"><figcaption><span class="t">Type</span> Type on the canvas, then set the font, bold, small caps, spacing and slant.</figcaption></figure>
+        <figure><img src="img/fl-demo-gradient.gif" alt="A linear gradient turned by its handle, given more colors, then switched to radial" width="800" height="467" loading="lazy"><figcaption><span class="t">Gradients</span> Linear or radial, turned from handles on the shape, with as many colors as you like.</figcaption></figure>
+        <figure><img src="img/fl-demo-stroke.gif" alt="A zigzag stroke growing wider, changing its joins and caps, then tapering at both ends" width="800" height="467" loading="lazy"><figcaption><span class="t">Strokes</span> Set the width, joins and caps, then shape the profile so the stroke swells and tapers.</figcaption></figure>
+        <figure><img src="img/fl-demo-shape-builder.gif" alt="Dragging across three overlapping circles merges the touched pieces" width="800" height="467" loading="lazy"><figcaption><span class="t">Shape Builder</span> Drag across overlapping shapes and the pieces you touch merge into one.</figcaption></figure>
+        <figure><img src="img/fl-demo-pathfinder.gif" alt="Four pairs of shapes combined with add, subtract, intersect and exclude" width="800" height="467" loading="lazy"><figcaption><span class="t">Pathfinder</span> Add, subtract, intersect and exclude, one pair at a time.</figcaption></figure>
+        <figure><img src="img/fl-demo-bevel.gif" alt="Dragging one corner handle rounds all four corners of a rectangle" width="800" height="467" loading="lazy"><figcaption><span class="t">Bevel</span> Drag one corner handle and every selected corner rounds with it.</figcaption></figure>
+        <figure><img src="img/fl-demo-export.gif" alt="The artwork in Blender, then the same artwork opened in a browser" width="800" height="467" loading="lazy"><figcaption><span class="t">Export</span> Preview the artwork in a browser with one click, or export it as SVG or PDF.</figcaption></figure>
+      </div>
+      <ul class="also">
+        <li>Tools sit in Blender&rsquo;s toolbar with Blender-style hotkeys, in a Vector workspace set up for flat work.</li>
+        <li>The color you pick is the color on screen and in the exported file.</li>
+        <li>Strokes can sit inside, on or outside the edge of a shape.</li>
+      </ul>
+    </section>
+
+    <section class="fl-sec" aria-labelledby="fl-next">
+      <div class="section-head"><h2 id="fl-next">Planned features</h2></div>
+      <div class="groups">
+        <div><h3>Drawing and editing</h3><ul>
+          <li>Clipping masks</li>
+          <li>Dashed and dotted strokes, and arrowheads</li>
+          <li>Turn a stroke into an editable shape</li>
+          <li>Mirror editing and snapping</li>
+          <li>Bevel on any curve, not only Flatland shapes</li>
+          <li>A curvature tool for reshaping paths by dragging anywhere</li>
+          <li>A blend tool that builds steps between two shapes</li>
+        </ul></div>
+        <div><h3>Type</h3><ul>
+          <li>Text as editable curves</li>
+          <li>Bullets and numbering</li>
+          <li>Text that stays real text in SVG and PDF</li>
+        </ul></div>
+        <div><h3>Files and layout</h3><ul>
+          <li>SVG import as editable shapes</li>
+          <li>.ai and .eps import</li>
+          <li>A panel showing the SVG code</li>
+          <li>Layers, groups and artboards</li>
+          <li>Reusable symbols from Blender's Asset Browser</li>
+        </ul></div>
+        <div><h3>Future</h3><ul>
+          <li>A 3D scene becomes editable vector art</li>
+          <li>Animation that exports as an SVG that plays in a browser</li>
+          <li>Artwork built by Blender's geometry nodes</li>
+          <li>Modifiers and node-based materials on vector art</li>
+          <li>Image trace: a picture in, editable shapes out</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="fl-sec" aria-labelledby="fl-lab">
+      <div class="section-head"><h2 id="fl-lab">From the prototype lab</h2><span class="label">Early experiments, not in the add-on yet</span></div>
+      <div class="proto-grid">
+        <figure><img data-zoom src="img/proto-lineart.jpg" alt="Blender's monkey head traced from 3D into clean line art" width="900" height="900" loading="lazy"><figcaption>A 3D model traced as line art</figcaption></figure>
+        <figure><img data-zoom src="img/proto-cellular.jpg" alt="A 3D rock shaded with vector cells" width="571" height="570" loading="lazy"><figcaption>3D shading as vector cells</figcaption></figure>
+        <figure><img data-zoom src="img/proto-engraving.jpg" alt="The same rock shaded with engraving lines" width="574" height="574" loading="lazy"><figcaption>The same shading as engraving lines</figcaption></figure>
+        <figure><img data-zoom src="img/proto-screenprint.jpg" alt="The same rock shaded as a screenprint pattern" width="569" height="568" loading="lazy"><figcaption>The same shading as a screenprint pattern</figcaption></figure>
+        <figure><img data-zoom src="img/proto-terminator.jpg" alt="Light and shadow on the rock split into flat outlined regions" width="576" height="576" loading="lazy"><figcaption>Light and shadow split into flat regions</figcaption></figure>
+        <figure><img class="contain" data-zoom src="img/proto-poster.jpg" alt="A poster called Silhouette, laid out in Blender with a gradient circle" width="857" height="1200" loading="lazy"><figcaption>A poster made entirely in Blender</figcaption></figure>
+      </div>
+    </section>
+  </div>
+
+  <div class="page-view" data-page="myui" hidden>
+    <p class="back"><a href="#work">Back to the portfolio</a></p>
+    <header class="fl-head">
+      <div class="tb"><div><span>Type</span><strong>Product</strong></div><div><span>Status</span><strong>Continued support</strong></div><div><span>Organization</span><strong>University of Idaho</strong></div><div><span>Year</span><strong>2025</strong></div></div>
+      <h1 class="fl-title page-title">MyUI redesign</h1>
+    </header>
+    <div class="case">
+      <dl class="facts">
+        <div><dt>Role</dt><dd>Product manager, UI/UX design, development</dd></div>
+        <div><dt>Team</dt><dd>Me, a UI/UX consultant and two UI/UX interns</dd></div>
+        <div><dt>Built with</dt><dd>HTML, CSS and JavaScript cards in Ellucian Experience</dd></div>
+        <div><dt>Presentation at Ellucian Live</dt><dd>&ldquo;Mastering UI/UX in Ellucian Experience: No-Developer Design That Delivers,&rdquo; on how we ran this redesign without developer time</dd></div>
+      </dl>
+      <div class="prose">
+        <p>MyUI is the portal where University of Idaho students and staff go for registration, grades, financial aid, pay and campus services. I led its redesign as product manager.</p>
+        <p>We had a UI/UX consultant, two UI/UX interns and a Figma license, but no developer time. So I did the UI/UX design and built the cards myself in HTML, CSS and JavaScript, outside the normal sprint system. One of the interns drew the banner art for each card.</p>
+        <p>We told people about the change early and often, through portal announcements, newsletters, student groups and staff and faculty councils. Short surveys in the portal got people ready for it, and we ran usability tests and focus groups along the way.</p>
+        <div class="spec-wrap"><span class="spec-h">Stats</span><div class="spec three"><div><span>Cards redesigned</span><p>47</p><small>In under six months</small></div><div><span>Feedback</span><p>4 to 1</p><small>Positive to negative</small></div><div><span>Survey responses</span><p>2,000+</p></div></div></div>
+      </div>
+    </div>
+
+    <section class="fl-sec rules" aria-labelledby="mu-rules">
+      <div class="section-head"><h2 id="mu-rules">Design principles</h2></div>
+      <div class="rules-grid">
+        <div>
+          <h4>Accessibility</h4>
+          <p>WCAG AA color contrast, HTML a screen reader can follow, visible keyboard focus, alt text and large touch targets.</p>
+        </div>
+        <div>
+          <h4>Layout</h4>
+          <p>No scrolling inside a card, no cut-off text, and three to five actions per card.</p>
+        </div>
+        <div>
+          <h4>Graphics</h4>
+          <p>Vector graphics that stay sharp and never stretch. Each banner marks its card, so people find what they need while scanning.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="templates">
+      <div class="templates-head">
+        <h3 class="sub">Card templates</h3>
+        <p>I published six templates so other schools on Ellucian Experience can build cards the same way. <a href="https://github.com/TrevorHumble/Example-Experience-Cards">Templates on GitHub</a></p>
+      </div>
+      <div class="tpl-grid">
+        <figure><img data-zoom src="img/tpl-simple-rows.jpg" alt="Simple rows template, shown as the Printer Services card" width="464" height="362" loading="lazy"><figcaption class="label">Simple rows</figcaption></figure>
+        <figure><img data-zoom src="img/tpl-descriptive-rows.jpg" alt="Descriptive rows template, shown as the Academic Support card" width="462" height="361" loading="lazy"><figcaption class="label">Descriptive rows</figcaption></figure>
+        <figure><img data-zoom src="img/tpl-button-card.jpg" alt="Button card template, shown as the Scholarship Universe card" width="464" height="362" loading="lazy"><figcaption class="label">Button card</figcaption></figure>
+        <figure><img data-zoom src="img/tpl-grid-links.jpg" alt="Grid links template, shown as the Campus Maps card" width="462" height="361" loading="lazy"><figcaption class="label">Grid links</figcaption></figure>
+        <figure><img data-zoom src="img/tpl-calendar.jpg" alt="Calendar template, shown as the Important Dates card" width="462" height="360" loading="lazy"><figcaption class="label">Calendar</figcaption></figure>
+        <figure><img data-zoom src="img/tpl-custom.jpg" alt="Custom design, shown as the Graduation card" width="465" height="361" loading="lazy"><figcaption class="label">Custom design</figcaption></figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-view" data-page="wedding-master" hidden>
+    <p class="back"><a href="#wedding">Back to the portfolio</a></p>
+    <header class="fl-head">
+      <div class="tb"><div><span>Type</span><strong>Application</strong></div><div><span>Status</span><strong>Continued support</strong></div></div>
+      <h1 class="fl-title page-title">Wedding Master</h1>
+      <p class="lede">A photo game I built for a wedding of about 100 guests. Guests scanned one QR code, signed up without a password and earned points for photo tasks. It has badges, a leaderboard, a shared gallery and an end-of-night slideshow, and the host runs it all from an admin page.</p>
+    </header>
+    <div class="wm-page">
+      <div class="phones phones-big">
+        <figure><img data-zoom src="img/wm-real-tasks.jpg" alt="Wedding Master: the task list, with points for each photo task" width="585" height="1266" loading="lazy"><figcaption class="label">Tasks</figcaption></figure>
+        <figure><img data-zoom src="img/wm-real-gallery.jpg" alt="Wedding Master: the shared gallery of guests' photos" width="585" height="1266" loading="lazy"><figcaption class="label">Gallery</figcaption></figure>
+        <figure><img data-zoom src="img/wm-real-leaderboard.jpg" alt="Wedding Master: the leaderboard, with the top three on a podium" width="585" height="1266" loading="lazy"><figcaption class="label">Leaderboard</figcaption></figure>
+        <figure><img data-zoom src="img/wm-real-profile.jpg" alt="Wedding Master: my profile, with points, progress and badges" width="585" height="1266" loading="lazy"><figcaption class="label">Profile and badges</figcaption></figure>
+      </div>
+    </div>
+    <p class="note">Real screens from the wedding, shared with the couple&rsquo;s permission.</p>
+
+    <section class="fl-sec" aria-labelledby="wm-goals">
+      <div class="section-head"><h2 id="wm-goals">Core principles</h2></div>
+      <ol class="goals">
+          <li><span class="goal-mark">1</span><h3>Fun</h3><p>It had to be fun enough that guests kept playing on their own, but never so demanding that it kept everyone&rsquo;s nose in their phone.</p></li>
+          <li><span class="goal-mark">2</span><h3>Easy to Join</h3><p>Any guest, grandparents included, could start playing seconds after tapping a link, with no app, account or password.</p></li>
+          <li><span class="goal-mark">3</span><h3>Hosts in Charge</h3><p>The couple could add or change tasks on the day and hide or remove any photo, with no tech help.</p></li>
+          <li><span class="goal-mark">4</span><h3>One Shared Record</h3><p>Every photo went into one gallery, the favorites played as a slideshow, and everything downloaded as a keepsake.</p></li>
+      </ol>
+    </section>
+
+    <section class="fl-sec" aria-labelledby="wm-use">
+      <div class="section-head"><h2 id="wm-use">User statistics</h2></div>
+      <div class="spec three"><div><span>Posted, liked or commented</span><p>63%</p><small>Self-serve software: 34.6%</small><small class="src"><a href="https://userpilot.com/blog/product-metrics-benchmark-report/" target="_blank" rel="noopener">Userpilot 2024, 547 companies</a></small></div><div><span>Posted a photo</span><p>47%</p><small>Typical online community: about 10%</small><small class="src"><a href="https://www.nngroup.com/articles/participation-inequality/" target="_blank" rel="noopener">90-9-1 rule, Nielsen Norman Group</a></small></div><div><span>Players who liked each photo</span><p>4.5%</p><small>Instagram brand posts: 0.36%</small><small class="src"><a href="https://www.rivaliq.com/blog/good-engagement-rate-instagram/" target="_blank" rel="noopener">Rival IQ 2025, median across industries</a></small></div></div>
+      <div class="wm-stats">
+        <p>Guests shared 249 photos, 84% of them during the wedding weekend itself, and left 544 likes, more than two per photo.</p>
+      </div>
+    </section>
+
+    <section class="fl-sec" aria-labelledby="wm-themes">
+      <div class="section-head"><h2 id="wm-themes">Color themes</h2><span class="label">Shown with sample guests</span></div>
+      <p class="goal-lead">The host picks a color theme and a symbol from the admin page, and the whole app changes to match, badges included.</p>
+      <div class="phones">
+        <figure><img data-zoom src="img/wm-theme-green.jpg" alt="The leaderboard in the Garden Green theme with a leaf symbol" width="585" height="1266" loading="lazy"><figcaption class="label">Garden Green</figcaption></figure>
+        <figure><img data-zoom src="img/wm-theme-blacktie.jpg" alt="The leaderboard in the Black Tie theme with a martini symbol" width="585" height="1266" loading="lazy"><figcaption class="label">Black Tie</figcaption></figure>
+        <figure><img data-zoom src="img/wm-theme-azulejo.jpg" alt="The leaderboard in the Azulejo Blue theme with a star symbol" width="585" height="1266" loading="lazy"><figcaption class="label">Azulejo Blue</figcaption></figure>
+        <figure><img data-zoom src="img/wm-theme-burgundy.jpg" alt="The leaderboard in the Burgundy theme with a heart symbol" width="585" height="1266" loading="lazy"><figcaption class="label">Burgundy</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="fl-sec" aria-labelledby="wm-stag">
+      <div class="section-head"><h2 id="wm-stag">Stag Master</h2><span class="label">Bachelor party version</span></div>
+      <p class="goal-lead">The same app, run for the groom&rsquo;s bachelor party as a separate event: its own address and data, a black-tie theme and its own badges. One setting switches between the two.</p>
+      <div class="phones six">
+        <figure><img data-zoom src="img/wm-stag-leaderboard.jpg" alt="Stag Master leaderboard with the top three on a podium" width="585" height="1266" loading="lazy"><figcaption class="label">Leaderboard</figcaption></figure>
+        <figure><img data-zoom src="img/wm-stag-tasks.jpg" alt="Stag Master task list" width="585" height="1266" loading="lazy"><figcaption class="label">Tasks</figcaption></figure>
+        <figure><img data-zoom src="img/wm-stag-task.jpg" alt="A Stag Master task, ready for a photo" width="585" height="1266" loading="lazy"><figcaption class="label">A task</figcaption></figure>
+        <figure><img data-zoom src="img/wm-stag-profile.jpg" alt="My Stag Master profile with points and badges" width="585" height="1266" loading="lazy"><figcaption class="label">Profile</figcaption></figure>
+        <figure><img data-zoom src="img/wm-stag-how-to-play.jpg" alt="Stag Master how to play screen" width="585" height="1266" loading="lazy"><figcaption class="label">How to play</figcaption></figure>
+        <figure><img data-zoom src="img/wm-stag-gallery.jpg" alt="The Stag Master gallery sorted by task" width="585" height="1266" loading="lazy"><figcaption class="label">Gallery by task</figcaption></figure>
+      </div>
+    </section>
+  </div>
+
+  <div class="page-view" data-page="scatter-camera" hidden>
+    <p class="back"><a href="#blender">Blender tools</a></p>
+    <header class="fl-head">
+      <div class="tb"><div><span>Type</span><strong>Add-on</strong></div><div><span>Status</span><strong>In progress</strong></div></div>
+      <h1 class="fl-title page-title">Scatter Camera</h1>
+      <p class="lede">A field of grass slows Blender down, and most of it never appears in the shot. Scatter Camera grows grass only where the active camera is looking. Blades are thickest near the camera and thin out over a distance you set, and a black-to-white ramp controls how they fade.</p>
+    </header>
+    <div class="std-hero"><img data-zoom src="img/scatter-render.jpg" alt="A biplane on a grass field, rendered with Scatter Camera" width="1600" height="900"></div>
+    <div class="page-numbers"><div class="spec-wrap"><span class="spec-h">Stats</span><div class="spec three"><div><span>Standard scatter</span><p>866,381 blades</p><small>Whole field</small></div><div><span>Scatter Camera</span><p>133,869 blades</p><small>Front shot</small></div><div><span>Visible blades missing</span><p>0</p></div></div></div></div>
+    <div class="pair">
+      <figure>
+        <img data-zoom src="img/scatter-above.jpg" alt="The grass field seen from high above, with grass only inside the camera's view" width="1600" height="900">
+        <figcaption>From above: grass grows only inside the camera's view.</figcaption>
+      </figure>
+      <figure>
+        <img data-zoom src="img/scatter-panel.jpg" alt="The Scatter Camera settings panel in Blender's sidebar" width="1600" height="973" style="object-position: 100% 0">
+        <figcaption>All settings are in one panel in Blender's sidebar.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div id="art-view" hidden></div>
+</div>
+
+<footer>
+  <div class="wrap"><span class="label">Trevor Humble &middot; 2026</span></div>
+</footer>
+
+<dialog class="zoom" id="zoom" aria-label="Enlarged picture">
+  <div class="zoom-inner">
+    <div>
+      <img id="zoom-img" src="" alt="">
+      <p id="zoom-cap"></p>
+    </div>
+  </div>
+</dialog>
+
+<script type="application/json" id="art-data">[{"id": "DAnGqo", "title": "Liminal Fields", "kind": "2D animation", "group": "Animation", "text": "This piece was exhibited at the Moscow Contemporary Art Gallery during their Timescapes(s) exhibition. It was hand-painted using Krita's RGBA brush engine, with the motion graphics animated in After Effects. At its core, it was a love letter to my hometown, the city of Moscow, ID.", "tools": ["Krita", "After Effects", "Premiere"], "videos": ["https://www.youtube.com/watch?v=Qlhx3Ls0iuk"], "cover": "img/art-liminal-fields.jpg", "imgs": [{"src": "img/art/DAnGqo-1.jpg", "w": 1283, "h": 637}, {"src": "img/art/DAnGqo-2.jpg", "w": 1600, "h": 900}, {"src": "img/art/DAnGqo-3.jpg", "w": 1600, "h": 800}, {"src": "img/art/DAnGqo-4.jpg", "w": 806, "h": 1075}]}, {"id": "xDmrgR", "title": "The Storm", "kind": "3D animation", "group": "Animation", "text": "In this atmospheric animation, I created a stylized environment using Blender, employing procedural shading and realistic ocean simulation. The boat's movement through the water is tied to the surface of the ocean with constraints and keyframes.", "tools": ["Blender modeling", "Procedural texturing", "Blender animation", "Ocean simulation", "Stylized rendering"], "videos": ["https://www.youtube.com/watch?v=TI6lY3kEBWg"], "cover": "img/art-the-storm-tile.jpg", "imgs": [{"src": "img/art-the-storm.jpg", "w": 1200, "h": 675}]}, {"id": "zPkN3Q", "title": "Realistic Pignite", "kind": "3D concept", "group": "3D", "text": "I translated the Pok\u00e9mon Pignite from stylized 2D art into a realistic 3D design. It was sculpted in ZBrush with careful attention to form and musculature, then textured in Substance Painter to capture details like stitching and skin translucency. The sparse fur was groomed with geometry nodes.", "tools": ["ZBrush sculpting", "Substance Painter", "Cycles"], "videos": [], "cover": "img/art-pignite.jpg", "imgs": [{"src": "img/art/zPkN3Q-1.jpg", "w": 1600, "h": 1600}, {"src": "img/art/zPkN3Q-2.jpg", "w": 1558, "h": 876}, {"src": "img/art/zPkN3Q-3.jpg", "w": 1424, "h": 796}, {"src": "img/art/zPkN3Q-4.jpg", "w": 1600, "h": 1600}]}, {"id": "DvEoo0", "title": "Aganee, Weaver of Light and Master of Time", "kind": "3D concept", "group": "3D", "text": "Using ZBrush for sculpting and hand-painted textures, I brought the character Aganee to life. The character was posed in ZBrush and the final image was composited in Photoshop from a dozen render passes, with a focus on strong anatomy, detailed texturing and storytelling.", "tools": ["ZBrush sculpting", "Anatomy", "Photoshop compositing", "ZBrush poly painting"], "videos": [], "cover": "img/art-aganee.jpg", "imgs": [{"src": "img/art/DvEoo0-1.jpg", "w": 1600, "h": 1600}, {"src": "img/art/DvEoo0-2.jpg", "w": 1600, "h": 1600}, {"src": "img/art/DvEoo0-3.jpg", "w": 1600, "h": 902}, {"src": "img/art/DvEoo0-4.jpg", "w": 1600, "h": 900}, {"src": "img/art/DvEoo0-5.jpg", "w": 1600, "h": 894}]}, {"id": "VJEGy4", "title": "Rocky", "kind": "3D animation", "group": "Animation", "text": "This project was a study in infusing solid and impactful animation with life. Special attention was given to look development, with custom NPR textures and compositing contributing to its unique appearance.", "tools": ["Blender animation", "Geometry nodes", "Procedural materials", "Compositing"], "videos": ["https://www.youtube.com/watch?v=-d0aqfVE7Ps"], "cover": "img/art-rocky.jpg", "imgs": [{"src": "img/art/VJEGy4-1.jpg", "w": 1600, "h": 1600}, {"src": "img/art/VJEGy4-2.jpg", "w": 1600, "h": 1600}, {"src": "img/art/VJEGy4-3.jpg", "w": 1600, "h": 1600}, {"src": "img/art/VJEGy4-4.jpg", "w": 1600, "h": 910}]}, {"id": "8bJnLQ", "title": "Pok\u00e9mon: Freedom and Revolution", "kind": "3D animation", "group": "Animation", "text": "This animation began in a workshop I ran on the fundamentals of animation. What started as a simple flour sack exercise grew into a fuller piece, thanks to ideas from the students. The foliage was scattered with geometry nodes, the textures and sky were procedural, and the line work and explosions were drawn with Grease Pencil.", "tools": ["Blender animation", "Geometry nodes", "Grease Pencil", "Premiere"], "videos": ["https://vimeo.com/942745128"], "cover": "img/art-freedom-revolution.jpg", "imgs": [{"src": "img/art/8bJnLQ-1.jpg", "w": 1600, "h": 900}, {"src": "img/art/8bJnLQ-2.jpg", "w": 1600, "h": 900}, {"src": "img/art/8bJnLQ-3.jpg", "w": 1600, "h": 900}]}, {"id": "8bK5zQ", "title": "FortLight", "kind": "3D game world", "group": "3D", "text": "As the lead designer, a team of TAs and I created a game world for the land of EverLight, a fictional land designed to inspire the students of VTD 380: Advanced Character Design. Each area has its own post-processing volume, structures and vegetation to tell its story.", "tools": ["Level design", "Post-processing volumes"], "videos": ["https://vimeo.com/945504164"], "cover": "img/art-fortlight.jpg", "imgs": [{"src": "img/art/8bK5zQ-1.jpg", "w": 1080, "h": 1080}]}, {"id": "140WGo", "title": "The Legend of Darth Gust", "kind": "3D animation", "group": "Animation", "text": "This humorous Star Wars animation came from a collaboration with a close friend who taught himself to play music with compressed air during the COVID-19 pandemic. The modeling and rendering were done in Blender, and the sound was made with compressed air cans.", "tools": ["3D modeling", "Blender animation", "Premiere compositing"], "videos": ["https://www.youtube.com/watch?v=-HMVsIZA7dM"], "cover": "img/art-darth-gust.jpg", "imgs": [{"src": "img/art/140WGo-1.jpg", "w": 1600, "h": 900}, {"src": "img/art/140WGo-2.jpg", "w": 1600, "h": 900}, {"src": "img/art/140WGo-3.jpg", "w": 1600, "h": 900}, {"src": "img/art/140WGo-4.jpg", "w": 1600, "h": 900}]}, {"id": "d0dqaA", "title": "Jack-O-Lantern", "kind": "3D concept", "group": "3D", "text": "The goal of this piece was to apply anatomically recognizable skin, fat and musculature onto the form of a pumpkin, matching the wrinkle patterns of human skin.", "tools": ["3ds Max modeling", "ZBrush sculpting", "Substance Painter"], "videos": ["https://www.youtube.com/watch?v=cOBlhWuba0Y"], "cover": "img/art/d0dqaA-cover.jpg", "imgs": [{"src": "img/art/d0dqaA-1.jpg", "w": 1600, "h": 900}, {"src": "img/art/d0dqaA-2.jpg", "w": 1600, "h": 900}, {"src": "img/art/d0dqaA-3.jpg", "w": 1600, "h": 827}, {"src": "img/art/d0dqaA-4.jpg", "w": 1600, "h": 827}, {"src": "img/art/d0dqaA-5.jpg", "w": 1600, "h": 827}, {"src": "img/art/d0dqaA-6.jpg", "w": 976, "h": 1048}, {"src": "img/art/d0dqaA-7.jpg", "w": 1600, "h": 900}]}, {"id": "QnvPYd", "title": "How the Grinch Stole Christmas Feast", "kind": "Low-poly 3D concept", "group": "3D", "text": "This low-poly piece re-imagines the classic Dr. Seuss story. It was modeled in 3ds Max and rendered with Arnold's Toon Shader, using color ramps for cel shading and normal maps for the line work.", "tools": ["3ds Max", "Low-poly modeling", "Arnold toon shader", "Photoshop"], "videos": [], "cover": "img/art/QnvPYd-cover.jpg", "imgs": [{"src": "img/art/QnvPYd-1.jpg", "w": 1600, "h": 900}, {"src": "img/art/QnvPYd-2.jpg", "w": 1600, "h": 900}, {"src": "img/art/QnvPYd-3.jpg", "w": 1600, "h": 900}, {"src": "img/art/QnvPYd-4.jpg", "w": 1237, "h": 1012}, {"src": "img/art/QnvPYd-5.jpg", "w": 1600, "h": 947}]}, {"id": "kQY4zn", "title": "Unproduced Music Video", "kind": "3D animation", "group": "Animation", "text": "This project was a music video for a local musician that never came to be. It was planned in a claymation stop-motion style, so I built procedural tools for the flowing water, swaying trees and clay texture, and a custom procedural setup for the forests and mountains.", "tools": ["Blender", "Geometry nodes", "Procedural animation"], "videos": ["https://vimeo.com/952888961", "https://vimeo.com/952896730", "https://vimeo.com/952923739", "https://vimeo.com/952903102", "https://vimeo.com/952901415", "https://vimeo.com/952896868"], "cover": "img/art/kQY4zn-cover.jpg", "imgs": [{"src": "img/art/kQY4zn-1.jpg", "w": 1519, "h": 858}, {"src": "img/art/kQY4zn-2.jpg", "w": 936, "h": 529}, {"src": "img/art/kQY4zn-3.jpg", "w": 1188, "h": 662}, {"src": "img/art/kQY4zn-4.jpg", "w": 951, "h": 630}, {"src": "img/art/kQY4zn-5.jpg", "w": 1276, "h": 931}, {"src": "img/art/kQY4zn-6.jpg", "w": 783, "h": 824}]}, {"id": "2qwP8e", "title": "H.R. Giger Inspired Unreal Environment", "kind": "3D concept", "group": "3D", "text": "An exploration of organic and hard surface modeling in ZBrush, inspired by H.R. Giger's blend of the organic and mechanical. Everything was modeled and sculpted in ZBrush and staged in Unreal Engine, with procedural fog and a post-processing volume for atmosphere.", "tools": ["ZBrush hard surface", "Digital sculpting", "Unreal Engine lighting", "Procedural volumes"], "videos": [], "cover": "img/art/2qwP8e-cover.jpg", "imgs": [{"src": "img/art/2qwP8e-1.jpg", "w": 1366, "h": 828}, {"src": "img/art/2qwP8e-2.jpg", "w": 1196, "h": 822}, {"src": "img/art/2qwP8e-3.jpg", "w": 1100, "h": 816}, {"src": "img/art/2qwP8e-4.jpg", "w": 880, "h": 826}, {"src": "img/art/2qwP8e-5.jpg", "w": 942, "h": 1151}]}, {"id": "PXQGa1", "title": "Cycle Across Cuba", "kind": "Traditional art", "group": "Traditional and digital", "text": "A visual travelogue of the architecture and surroundings I came across while cycling from Trinidad to Havana, Cuba, drawn with loose linework and bold washes of color.", "tools": ["Alcohol markers", "Architectural drawing", "Landscape drawing"], "videos": [], "cover": "img/art/PXQGa1-cover.jpg", "imgs": [{"src": "img/art/PXQGa1-1.jpg", "w": 1600, "h": 1600}, {"src": "img/art/PXQGa1-2.jpg", "w": 1600, "h": 1600}, {"src": "img/art/PXQGa1-3.jpg", "w": 1600, "h": 1600}, {"src": "img/art/PXQGa1-4.jpg", "w": 1600, "h": 1600}, {"src": "img/art/PXQGa1-5.jpg", "w": 1600, "h": 1600}]}, {"id": "n0mZo4", "title": "Cycle Across Washington", "kind": "Traditional art", "group": "Traditional and digital", "text": "On-location drawings from cycling 300 miles across Washington state, capturing weathered textures and abandoned structures being reclaimed by their surroundings.", "tools": ["Alcohol markers", "Architectural drawing", "Landscape drawing"], "videos": [], "cover": "img/art/n0mZo4-cover.jpg", "imgs": [{"src": "img/art/n0mZo4-1.jpg", "w": 1600, "h": 1600}, {"src": "img/art/n0mZo4-2.jpg", "w": 1600, "h": 1194}, {"src": "img/art/n0mZo4-3.jpg", "w": 1600, "h": 1986}, {"src": "img/art/n0mZo4-4.jpg", "w": 1600, "h": 1986}]}, {"id": "kQ5ZDn", "title": "Digital", "kind": "Digital art", "group": "Traditional and digital", "text": "Digital drawings for trying out different styles and subjects, from gestural figure studies to expressive portraits and moody atmospheres.", "tools": ["Photoshop", "Krita"], "videos": [], "cover": "img/art/kQ5ZDn-cover.jpg", "imgs": [{"src": "img/art/kQ5ZDn-1.jpg", "w": 1600, "h": 1600}, {"src": "img/art/kQ5ZDn-2.jpg", "w": 1600, "h": 1600}, {"src": "img/art/kQ5ZDn-3.jpg", "w": 1600, "h": 972}, {"src": "img/art/kQ5ZDn-4.jpg", "w": 1600, "h": 900}, {"src": "img/art/kQ5ZDn-5.jpg", "w": 1080, "h": 607}]}, {"id": "qeDOAP", "title": "Expressive Sketches", "kind": "Traditional art", "group": "Traditional and digital", "text": "Studies of the human figure through bold, gestural mark-making and an inventive use of color and texture.", "tools": ["Alcohol markers", "Expressive drawing", "Anatomy drawing"], "videos": [], "cover": "img/art/qeDOAP-cover.jpg", "imgs": [{"src": "img/art/qeDOAP-1.jpg", "w": 1600, "h": 1600}, {"src": "img/art/qeDOAP-2.jpg", "w": 1600, "h": 1600}, {"src": "img/art/qeDOAP-3.jpg", "w": 1600, "h": 1600}, {"src": "img/art/qeDOAP-4.jpg", "w": 1600, "h": 1459}, {"src": "img/art/qeDOAP-5.jpg", "w": 1600, "h": 1161}]}]</script>
+
+<script>
+  (function () {
+    var captions = {
+      before: "Before: photos, logos and long paragraphs, with a different layout on every card.",
+      wireframe: "Wireframe: the new layout for every card, before the banner art.",
+      after: "After: every card has the same layout, with a banner illustration on top."
+    };
+    var buttons = document.querySelectorAll("[data-show]");
+    var views = document.querySelectorAll("[data-view]");
+    var cap = document.getElementById("viewer-cap");
+    buttons.forEach(function (b) {
+      b.addEventListener("click", function () {
+        buttons.forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+        views.forEach(function (v) { v.hidden = v.getAttribute("data-view") !== b.getAttribute("data-show"); });
+        cap.textContent = captions[b.getAttribute("data-show")];
+      });
+    });
+
+    var home = document.getElementById("home-view");
+    var flat = document.getElementById("flatland-view");
+    var artView = document.getElementById("art-view");
+    var ART = JSON.parse(document.getElementById("art-data").textContent);
+    var GROUPS = ["All", "Animation", "3D", "Traditional and digital"];
+    var filter = "All";
+
+    function esc(t) {
+      return String(t).replace(/[&<>"]/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+      });
+    }
+    function tile(p) {
+      return '<a class="art-tile" href="#art-' + p.id + '"><img src="' + p.cover + '" alt="' + esc(p.title) +
+        '" width="600" height="600" loading="lazy"><span class="t">' + esc(p.title) + '</span><span class="label">' +
+        esc(p.kind) + '</span></a>';
+    }
+    function renderIndex() {
+      var shown = ART.filter(function (p) { return filter === "All" || p.group === filter; });
+      artView.innerHTML =
+        '<p class="back"><a href="#art">Back to the portfolio</a></p>' +
+        '<header class="fl-head"><h1 class="fl-title">Design</h1>' +
+        '<p class="lede">Animation, characters, game worlds, and traditional and digital art. Pick a project to see all of its pictures.</p></header>' +
+        '<div class="toggle filters" role="group" aria-label="Show">' +
+        GROUPS.map(function (g) {
+          return '<button type="button" data-filter="' + g + '" aria-pressed="' + (g === filter) + '">' + g + '</button>';
+        }).join("") + '</div>' +
+        '<div class="art art-all">' + shown.map(tile).join("") + '</div>';
+    }
+    function embedUrl(v) {
+      var m = v.match(/youtube\.com\/watch\?v=([\w-]+)/) || v.match(/youtu\.be\/([\w-]+)/);
+      if (m) return "https://www.youtube-nocookie.com/embed/" + m[1] + "?rel=0";
+      m = v.match(/vimeo\.com\/(\d+)/);
+      if (m) return "https://player.vimeo.com/video/" + m[1] + "?dnt=1";
+      return "";
+    }
+    function renderProject(p) {
+      var i = ART.indexOf(p);
+      var prev = ART[(i - 1 + ART.length) % ART.length];
+      var next = ART[(i + 1) % ART.length];
+      var vids = p.videos.map(function (v, k) {
+        var src = embedUrl(v);
+        var name = p.videos.length > 1 ? p.title + ", clip " + (k + 1) : p.title;
+        return src ? '<figure class="vid"><iframe src="' + src + '" title="' + esc(name) +
+          '" loading="lazy" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe></figure>' : "";
+      }).join("");
+      var tools = p.tools.length ? '<div class="spec one"><div><span>Tools</span><ul>' + p.tools.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul></div></div>" : "";
+      var pics = p.imgs.map(function (im, k) {
+        return '<figure><img data-zoom src="' + im.src + '" alt="' + esc(p.title) + ", picture " + (k + 1) + " of " + p.imgs.length +
+          '" width="' + im.w + '" height="' + im.h + '"' + (k > 1 ? ' loading="lazy"' : "") + "></figure>";
+      }).join("");
+      artView.innerHTML =
+        '<p class="back"><a href="#art-all">All design</a></p>' +
+        '<header class="fl-head art-head">' +
+        '<div class="tb"><div><span>Type</span><strong>' + esc(p.kind) + '</strong></div><div><span>Pictures</span><strong>' + p.imgs.length + '</strong></div></div>' +
+        '<h1 class="art-title">' + esc(p.title) + '</h1>' +
+        (p.text ? '<p class="lede">' + esc(p.text) + '</p>' : "") + tools +
+        '</header>' +
+        '<div class="art-pics">' + vids + pics + '</div>' +
+        '<nav class="pager" aria-label="More design">' +
+        '<a href="#art-' + prev.id + '"><span class="label">Previous</span><span class="t">' + esc(prev.title) + '</span></a>' +
+        '<a href="#art-' + next.id + '"><span class="label">Next</span><span class="t">' + esc(next.title) + '</span></a>' +
+        '</nav>';
+      arm(artView);
+    }
+    artView.addEventListener("click", function (e) {
+      var b = e.target.closest ? e.target.closest("[data-filter]") : null;
+      if (b) {
+        filter = b.getAttribute("data-filter");
+        renderIndex();
+      }
+    });
+
+    document.querySelectorAll(".compare").forEach(function (c) {
+      var r = c.querySelector(".compare-range");
+      r.addEventListener("input", function () { c.style.setProperty("--pos", r.value + "%"); });
+    });
+
+    function route() {
+      var h = (location.hash || "").slice(1);
+      var view = "home";
+      var proj = null;
+      if (h === "flatland") {
+        view = "flatland";
+      } else if (h === "art-all") {
+        view = "artindex";
+      } else if (h.indexOf("art-") === 0) {
+        proj = ART.filter(function (x) { return "art-" + x.id === h; })[0] || null;
+        if (proj) { view = "project"; }
+      }
+      var named = document.querySelector('.page-view[data-page="' + h + '"]');
+      if (view === "home" && named) { view = "named"; }
+      document.querySelectorAll(".page-view").forEach(function (v) { v.hidden = v !== named || view !== "named"; });
+      home.hidden = view !== "home";
+      flat.hidden = view !== "flatland";
+      artView.hidden = view !== "artindex" && view !== "project";
+      if (view === "artindex") { renderIndex(); }
+      if (view === "project") { renderProject(proj); }
+      if (view !== "home") {
+        window.scrollTo(0, 0);
+      } else if (h) {
+        var el = document.getElementById(h);
+        if (el) { el.scrollIntoView(); }
+      }
+    }
+    window.addEventListener("hashchange", route);
+
+    var dlg = document.getElementById("zoom");
+    var zimg = document.getElementById("zoom-img");
+    var zcap = document.getElementById("zoom-cap");
+    function open(img) {
+      zimg.src = img.currentSrc || img.src;
+      zimg.alt = img.alt;
+      zcap.textContent = img.alt;
+      if (typeof dlg.showModal === "function") { dlg.showModal(); } else { dlg.setAttribute("open", ""); }
+    }
+    function arm(root) {
+      root.querySelectorAll("img[data-zoom]").forEach(function (img) {
+        img.setAttribute("tabindex", "0");
+        img.setAttribute("role", "button");
+      });
+    }
+    document.addEventListener("click", function (e) {
+      var img = e.target.closest ? e.target.closest("img[data-zoom]") : null;
+      if (img) { open(img); }
+    });
+    document.addEventListener("keydown", function (e) {
+      var t = e.target;
+      if ((e.key === "Enter" || e.key === " ") && t.matches && t.matches("img[data-zoom]")) {
+        e.preventDefault();
+        open(t);
+      }
+    });
+    arm(document);
+    route();
+    dlg.addEventListener("click", function () {
+      if (typeof dlg.close === "function") { dlg.close(); } else { dlg.removeAttribute("open"); }
+    });
+  })();
+</script>
+<div class="shade-bar" role="group" aria-label="Viewport shading">
+  <span class="hint">Shading<kbd>Z</kbd></span>
+  <button type="button" data-mode="wire" aria-pressed="false" title="Wireframe"><svg viewBox="0 0 16 16" fill="none" stroke="#e6e6e6" stroke-width="1.2"><circle cx="8" cy="8" r="6"/><ellipse cx="8" cy="8" rx="2.6" ry="6"/><path d="M2 8h12"/></svg></button>
+  <button type="button" data-mode="solid" aria-pressed="false" title="Solid"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#bdbdbd"/><circle cx="6" cy="6" r="2.2" fill="#ececec"/></svg></button>
+  <button type="button" data-mode="material" aria-pressed="true" title="Material"><svg viewBox="0 0 16 16"><defs><radialGradient id="zm" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#F6C143"/><stop offset=".55" stop-color="#E4402E"/><stop offset="1" stop-color="#1F3F9A"/></radialGradient></defs><circle cx="8" cy="8" r="6" fill="url(#zm)"/></svg></button>
+</div>
+<div class="z-tag" id="z-tag"></div>
+<script>
+(function () {
+  var root = document.documentElement, tag = document.getElementById("z-tag");
+  var order = ["material", "wire", "solid"], mode = "material";
+  function set(m) {
+    mode = m;
+    root.classList.remove("wire", "solid");
+    if (m !== "material") root.classList.add(m);
+    root.classList.remove("zfade"); void root.offsetWidth; root.classList.add("zfade");
+    document.querySelectorAll(".shade-bar button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.mode === m ? "true" : "false"); });
+    if (m !== "wire" && hot) { hot.classList.remove("z-hot"); hot = null; }
+  }
+  document.querySelector(".shade-bar").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (b) set(b.dataset.mode);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.target.closest && e.target.closest("input, textarea")) return;
+    if ((e.key === "z" || e.key === "Z") && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      set(order[(order.indexOf(mode) + 1) % order.length]);
+    }
+  });
+  var hot = null;
+  window.addEventListener("scroll", function () { if (hot) { hot.classList.remove("z-hot"); hot = null; } tag.style.visibility = "hidden"; }, { passive: true });
+  var PICK = "img, figure, section, header, p, h1, h2, h3, li, .std, .std-hero, .spec > div, .tb, .phones, .goals > li, .gifs figure, .vid, .viewer, .compare, a.more";
+  document.addEventListener("mousemove", function (e) {
+    if (mode !== "wire") return;
+    var el = document.elementFromPoint(e.clientX, e.clientY);
+    el = el && el.closest ? el.closest(PICK) : null;
+    if (el !== hot) {
+      if (hot) hot.classList.remove("z-hot");
+      hot = el;
+      if (hot) hot.classList.add("z-hot");
+    }
+    if (hot) {
+      var r = hot.getBoundingClientRect(), name = hot.tagName.toLowerCase() + (hot.classList[0] && hot.classList[0] !== "z-hot" ? "." + hot.classList[0] : "");
+      tag.textContent = name + "  " + Math.round(r.width) + " x " + Math.round(r.height);
+      tag.style.left = Math.min(window.innerWidth - tag.offsetWidth - 8, Math.max(8, r.left)) + "px";
+      tag.style.top = Math.max(8, r.top - 22) + "px";
+      tag.style.visibility = "visible";
+    } else {
+      tag.style.visibility = "hidden";
+    }
+  });
+})();
+</script>
+
