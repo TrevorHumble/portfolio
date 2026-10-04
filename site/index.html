@@ -245,7 +245,7 @@
   .back a::before { content: "\2190\00a0"; }
   .fl-head { display: grid; gap: 16px; padding-block: clamp(20px, 4vw, 40px) clamp(24px, 4vw, 40px); }
   .fl-head > .spec { max-width: 560px; }
-  .fl-head .lede { max-width: none; }
+  .fl-head .lede, .art-about .lede { max-width: none; }
   .hero .lede { max-width: none; }
   .fl-title {
     font-family: var(--display);
@@ -319,8 +319,9 @@
   #art-view { padding-bottom: clamp(40px, 6vw, 72px); }
   #art-view .pager { padding-bottom: 0; }
   .filters { margin-bottom: clamp(20px, 3vw, 32px); flex-wrap: wrap; }
-  .art-head { gap: 14px; }
-  .art-head .spec { max-width: 72ch; }
+  #art-view { --art-head-gap: 14px; --art-head-end: clamp(24px, 4vw, 40px); }
+  .art-head { gap: var(--art-head-gap); padding-bottom: var(--art-head-end); }
+  .art-head .spec, .art-about .spec { max-width: 72ch; }
   .art-title {
     font-family: var(--display);
     font-variation-settings: "wdth" 112;
@@ -331,9 +332,46 @@
   }
   .vid { aspect-ratio: 16 / 9; background: var(--shade); border-radius: 4px; overflow: hidden; }
   .vid iframe { display: block; width: 100%; height: 100%; border: 0; }
-  .art-pics { display: grid; gap: clamp(14px, 2.5vw, 28px); justify-items: start; }
-  .art-pics figure { margin: 0; width: 100%; }
-  .art-pics img { display: block; width: auto; max-width: 100%; max-height: 88vh; border-radius: 4px; background: var(--surface); }
+  /* Pictures only: equal-width columns, each picture at its own shape */
+  .art-pics { --gap: clamp(12px, 1.6vw, 18px); gap: var(--gap); display: flex; align-items: flex-start; }
+  .art-pics .col { gap: var(--gap); flex: 1 1 0; min-width: 0; display: grid; }
+  .art-pics figure { margin: 0; }
+  .art-pics img { display: block; width: 100%; height: auto; border-radius: 4px; background: var(--surface); }
+  /* Video projects: header, then the video with a picture column beside it (below the video on phones) */
+  .art-top { display: flex; flex-direction: column; }
+  .art-top > .art-head { padding-bottom: var(--art-head-gap); }
+  .art-about { display: grid; gap: var(--art-head-gap); padding-bottom: var(--art-head-end); }
+  .art-top > .art-hero { order: 1; margin-bottom: var(--art-head-end); }
+  .art-top > .art-about { order: 2; }
+  .art-hero { display: grid; row-gap: 12px; margin-top: 8px; }
+  .art-stage { min-width: 0; }
+  .art-stage .vid { margin: 0; }
+  .art-clips { display: flex; gap: 18px; align-items: center; margin-top: 10px; font: 500 0.7rem/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; }
+  .art-clips span { color: var(--ink-2); }
+  .art-clips button { background: none; border: 0; border-bottom: 2px solid transparent; padding: 6px 0; color: var(--ink-2); font: inherit; cursor: pointer; }
+  .art-clips button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+  .art-bar { display: flex; align-items: center; gap: 10px; height: 34px; border-top: 2px solid var(--ink); margin-bottom: 8px; font: 500 0.7rem/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; }
+  .art-count { color: var(--ink-2); }
+  .art-bar .sp { flex: 1; }
+  .art-up, .art-down { width: 26px; height: 26px; border: 1px solid var(--ink); border-radius: 2px; background: transparent; color: var(--ink); display: none; place-items: center; cursor: pointer; padding: 0; }
+  .art-up:disabled, .art-down:disabled { opacity: 0.25; cursor: default; }
+  .art-side-list { display: flex; flex-direction: row; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; }
+  .art-side-list figure { margin: 0; flex: 0 0 62%; scroll-snap-align: start; }
+  .art-side-list img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 3px; background: var(--surface); }
+  @media (min-width: 900px) {
+    .art-top > .art-hero { order: 0; margin-bottom: 0; }
+    .art-top > .art-about { order: 0; }
+    .art-hero { row-gap: 0; column-gap: 14px; align-items: start; }
+    .art-hero.has-side { grid-template-columns: minmax(0, 1fr) 240px; }
+    .art-stage { grid-column: 1; grid-row: 1; }
+    .art-clips { grid-column: 1; grid-row: 2; }
+    .art-side { position: relative; align-self: stretch; grid-column: 2; grid-row: 1; }
+    .art-side-in { position: absolute; inset: 0; display: flex; flex-direction: column; }
+    .art-up, .art-down { display: grid; }
+    .art-side-list { flex: 1; min-height: 0; flex-direction: column; overflow-x: visible; overflow-y: auto; scroll-snap-type: none; scrollbar-width: none; }
+    .art-side-list::-webkit-scrollbar { display: none; }
+    .art-side-list figure { flex: none; }
+  }
   .pager { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: clamp(36px, 5vw, 56px); border-top: 1px solid var(--rule); padding-top: 20px; padding-bottom: clamp(32px, 5vw, 56px); }
   .pager a { display: grid; gap: 4px; text-decoration: none; color: var(--ink); }
   .pager a + a { text-align: right; }
@@ -902,35 +940,134 @@
       if (m) return "https://player.vimeo.com/video/" + m[1] + "?dnt=1";
       return "";
     }
+    var shownProject = null;
+    function playable(p) {
+      return p.videos.filter(function (v) { return embedUrl(v); });
+    }
+    function pad(n) {
+      return (n < 10 ? "0" : "") + n;
+    }
+    function picFig(p, im, k) {
+      return '<figure><img data-zoom src="' + im.src + '" alt="' + esc(p.title) + ", picture " + (k + 1) + " of " + p.imgs.length +
+        '" width="' + im.w + '" height="' + im.h + '"' + (k > 1 ? ' loading="lazy"' : "") + "></figure>";
+    }
+    function clipTitle(p, count, k) {
+      return count > 1 ? p.title + ", clip " + (k + 1) : p.title;
+    }
+    function chevron(d) {
+      return '<svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="' + d + '"/></svg>';
+    }
+    function colCount(p) {
+      if (window.innerWidth < 600 || p.imgs.length < 2) { return 1; }
+      return p.imgs.length <= 4 || window.innerWidth < 900 ? 2 : 3;
+    }
+    // Columns are equal width, so summed h/w is proportional to column height.
+    function masonry(p) {
+      var n = colCount(p);
+      var cols = [];
+      var colHeights = [];
+      for (var c = 0; c < n; c++) { cols.push(""); colHeights.push(0); }
+      p.imgs.forEach(function (im, k) {
+        var shortest = 0;
+        for (var c = 1; c < n; c++) { if (colHeights[c] < colHeights[shortest]) { shortest = c; } }
+        cols[shortest] += picFig(p, im, k);
+        colHeights[shortest] += im.h / im.w;
+      });
+      return '<div class="art-pics">' + cols.map(function (html) { return '<div class="col">' + html + "</div>"; }).join("") + "</div>";
+    }
+    function hero(p) {
+      var vids = playable(p);
+      var clips = vids.length > 1 ?
+        '<div class="art-clips" role="group" aria-label="Clips"><span>Clips</span>' + vids.map(function (v, k) {
+          return '<button type="button" aria-pressed="' + (k === 0) + '" data-src="' + embedUrl(v) + '" data-title="' + esc(clipTitle(p, vids.length, k)) + '">' + pad(k + 1) + "</button>";
+        }).join("") + "</div>" : "";
+      var side = p.imgs.length ?
+        '<aside class="art-side" aria-label="Pictures"><div class="art-side-in"><div class="art-bar"><span>Pictures</span>' +
+        '<span class="art-count"></span><span class="sp"></span>' +
+        '<button type="button" class="art-up" aria-label="Previous pictures">' + chevron("M3 10l5-5 5 5") + "</button>" +
+        '<button type="button" class="art-down" aria-label="Next pictures">' + chevron("M3 6l5 5 5-5") + "</button></div>" +
+        '<div class="art-side-list">' + p.imgs.map(function (im, k) { return picFig(p, im, k); }).join("") + "</div></div></aside>" : "";
+      return '<div class="art-hero' + (p.imgs.length ? " has-side" : "") + '"><div class="art-stage"><figure class="vid"><iframe src="' + embedUrl(vids[0]) + '" title="' +
+        esc(clipTitle(p, vids.length, 0)) + '" loading="lazy" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe></figure></div>' +
+        clips + side + "</div>";
+    }
+    function pictureStep(list) {
+      return list.firstElementChild.offsetHeight + (parseFloat(getComputedStyle(list).rowGap) || 0);
+    }
+    function syncPictureColumn() {
+      var list = artView.querySelector(".art-side-list");
+      if (!list) { return; }
+      var n = list.children.length;
+      var count = artView.querySelector(".art-count");
+      var up = artView.querySelector(".art-up");
+      var down = artView.querySelector(".art-down");
+      var swipeLayout = down.offsetParent === null; // CSS hides the buttons below 900px
+      if (swipeLayout) {
+        count.textContent = String(n);
+        return;
+      }
+      up.disabled = list.scrollTop <= 1;
+      down.disabled = list.scrollTop + list.clientHeight >= list.scrollHeight - 1;
+      count.textContent = pad(down.disabled ? n : Math.min(n, Math.round(list.scrollTop / pictureStep(list)) + 1)) + "/" + pad(n);
+    }
+    function wireHero() {
+      var ifr = artView.querySelector(".art-stage iframe");
+      var clips = artView.querySelectorAll(".art-clips button");
+      clips.forEach(function (b) {
+        b.addEventListener("click", function () {
+          if (b.getAttribute("aria-pressed") === "true") { return; }
+          // A fresh iframe, never a new src on the live one: that would add a history entry and hijack Back.
+          var fresh = ifr.cloneNode();
+          fresh.src = b.getAttribute("data-src");
+          fresh.title = b.getAttribute("data-title");
+          ifr.replaceWith(fresh);
+          ifr = fresh;
+          clips.forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+        });
+      });
+      var list = artView.querySelector(".art-side-list");
+      if (!list) { return; }
+      function scrollStep(dir) {
+        var calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        list.scrollBy({ top: dir * pictureStep(list), behavior: calm ? "auto" : "smooth" });
+      }
+      artView.querySelector(".art-up").addEventListener("click", function () { scrollStep(-1); });
+      artView.querySelector(".art-down").addEventListener("click", function () { scrollStep(1); });
+      list.addEventListener("scroll", syncPictureColumn);
+      syncPictureColumn();
+    }
     function renderProject(p) {
+      shownProject = p;
       var i = ART.indexOf(p);
       var prev = ART[(i - 1 + ART.length) % ART.length];
       var next = ART[(i + 1) % ART.length];
-      var vids = p.videos.map(function (v, k) {
-        var src = embedUrl(v);
-        var name = p.videos.length > 1 ? p.title + ", clip " + (k + 1) : p.title;
-        return src ? '<figure class="vid"><iframe src="' + src + '" title="' + esc(name) +
-          '" loading="lazy" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe></figure>' : "";
-      }).join("");
+      var hasVideo = playable(p).length > 0;
       var tools = p.tools.length ? '<div class="spec one"><div><span>Tools</span><ul>' + p.tools.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul></div></div>" : "";
-      var pics = p.imgs.map(function (im, k) {
-        return '<figure><img data-zoom src="' + im.src + '" alt="' + esc(p.title) + ", picture " + (k + 1) + " of " + p.imgs.length +
-          '" width="' + im.w + '" height="' + im.h + '"' + (k > 1 ? ' loading="lazy"' : "") + "></figure>";
-      }).join("");
+      var heading = '<div class="tb"><div><span>Type</span><strong>' + esc(p.kind) + '</strong></div><div><span>Pictures</span><strong>' + p.imgs.length + '</strong></div></div>' +
+        '<h1 class="art-title">' + esc(p.title) + '</h1>';
+      var lede = p.text ? '<p class="lede">' + esc(p.text) + '</p>' : "";
       artView.innerHTML =
         '<p class="back"><a href="#art-all">All design</a></p>' +
-        '<header class="fl-head art-head">' +
-        '<div class="tb"><div><span>Type</span><strong>' + esc(p.kind) + '</strong></div><div><span>Pictures</span><strong>' + p.imgs.length + '</strong></div></div>' +
-        '<h1 class="art-title">' + esc(p.title) + '</h1>' +
-        (p.text ? '<p class="lede">' + esc(p.text) + '</p>' : "") + tools +
-        '</header>' +
-        '<div class="art-pics">' + vids + pics + '</div>' +
+        (hasVideo ?
+          '<div class="art-top"><header class="fl-head art-head">' + heading + '</header>' +
+          '<div class="art-about">' + lede + tools + '</div>' + hero(p) + '</div>' :
+          '<header class="fl-head art-head">' + heading + lede + tools + '</header>' + masonry(p)) +
         '<nav class="pager" aria-label="More design">' +
         '<a href="#art-' + prev.id + '"><span class="label">Previous</span><span class="t">' + esc(prev.title) + '</span></a>' +
         '<a href="#art-' + next.id + '"><span class="label">Next</span><span class="t">' + esc(next.title) + '</span></a>' +
         '</nav>';
+      if (hasVideo) { wireHero(); }
       arm(artView);
     }
+    window.addEventListener("resize", function () {
+      if (!shownProject) { return; }
+      syncPictureColumn();
+      var pics = artView.querySelector(".art-pics");
+      if (pics && colCount(shownProject) !== pics.children.length) {
+        pics.outerHTML = masonry(shownProject);
+        arm(artView);
+      }
+    });
     artView.addEventListener("click", function (e) {
       var b = e.target.closest ? e.target.closest("[data-filter]") : null;
       if (b) {
@@ -962,6 +1099,7 @@
       home.hidden = view !== "home";
       flat.hidden = view !== "flatland";
       artView.hidden = view !== "artindex" && view !== "project";
+      if (view !== "project") { shownProject = null; }
       if (view === "artindex") { renderIndex(); }
       if (view === "project") { renderProject(proj); }
       if (view !== "home") {
