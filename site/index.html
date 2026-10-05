@@ -234,6 +234,7 @@
     border: 1.5px solid var(--ink);
     border-radius: 3px;
     padding: 12px 18px;
+    cursor: pointer;
   }
   .more:hover { background: var(--ink); color: var(--paper); }
   .media { display: grid; gap: 16px; align-content: start; justify-items: start; }
@@ -512,7 +513,7 @@
         <img src="img/flatland-cube-v3.svg" alt="Blender&rsquo;s default cube rising over the sea like the sun, drawn in Flatland" width="1600" height="1200">
         <span class="kind"><span class="label">Tool</span><span class="what">Flatland</span></span>
       </a>
-      <a href="#art-DAnGqo">
+      <a href="#art">
         <img src="img/art-liminal-fields.jpg" alt="Liminal Fields: a hand-painted station wagon on a road below storm clouds" width="1200" height="675" style="object-position: 45% 50%">
         <span class="kind"><span class="label">Design</span><span class="what">Liminal Fields</span></span>
       </a>
@@ -612,17 +613,9 @@
       <h2 id="art-h">Design</h2>
       <span class="label">Animation, 3D, traditional and digital art</span>
     </div>
-    <div class="art">
-      <a class="art-tile" href="#art-DAnGqo"><img src="img/art-liminal-fields.jpg" alt="Liminal Fields" width="600" height="600" loading="lazy"><span class="t">Liminal Fields</span><span class="label">2D animation</span></a>
-      <a class="art-tile" href="#art-xDmrgR"><img src="img/art-the-storm-tile.jpg" alt="The Storm" width="600" height="600" loading="lazy"><span class="t">The Storm</span><span class="label">3D animation</span></a>
-      <a class="art-tile" href="#art-zPkN3Q"><img src="img/art-pignite.jpg" alt="Realistic Pignite" width="600" height="600" loading="lazy"><span class="t">Realistic Pignite</span><span class="label">3D concept</span></a>
-      <a class="art-tile" href="#art-DvEoo0"><img src="img/art-aganee.jpg" alt="Aganee, Weaver of Light and Master of Time" width="600" height="600" loading="lazy"><span class="t">Aganee, Weaver of Light and Master of Time</span><span class="label">3D concept</span></a>
-      <a class="art-tile" href="#art-VJEGy4"><img src="img/art-rocky.jpg" alt="Rocky" width="600" height="600" loading="lazy"><span class="t">Rocky</span><span class="label">3D animation</span></a>
-      <a class="art-tile" href="#art-8bJnLQ"><img src="img/art-freedom-revolution.jpg" alt="Pok&#233;mon: Freedom and Revolution" width="600" height="600" loading="lazy"><span class="t">Pok&#233;mon: Freedom and Revolution</span><span class="label">3D animation</span></a>
-      <a class="art-tile" href="#art-8bK5zQ"><img src="img/art-fortlight.jpg" alt="FortLight" width="600" height="600" loading="lazy"><span class="t">FortLight</span><span class="label">3D game world</span></a>
-      <a class="art-tile" href="#art-PXQGa1"><img src="img/art/PXQGa1-cover.jpg" alt="Cycle Across Cuba" width="600" height="600" loading="lazy"><span class="t">Cycle Across Cuba</span><span class="label">Traditional art</span></a>
-    </div>
-    <p class="art-more"><a class="more" href="#art-all">See all</a></p>
+    <div class="toggle filters" role="group" aria-label="Show" id="art-filters" hidden></div>
+    <div class="art" id="art-grid"></div>
+    <p class="art-more" hidden><button type="button" class="more" id="art-more" aria-controls="art-grid" aria-expanded="false"></button></p>
   </section>
 
   <section id="about" aria-labelledby="about-h">
@@ -921,18 +914,49 @@
         '" width="600" height="600" loading="lazy"><span class="t">' + esc(p.title) + '</span><span class="label">' +
         esc(p.kind) + '</span></a>';
     }
-    function renderIndex() {
-      var shown = ART.filter(function (p) { return filter === "All" || p.group === filter; });
-      artView.innerHTML =
-        '<p class="back"><a href="#art">Back to the portfolio</a></p>' +
-        '<header class="fl-head"><h1 class="fl-title">Design</h1>' +
-        '<p class="lede">Animation, characters, game worlds, and traditional and digital art. Pick a project to see all of its pictures.</p></header>' +
-        '<div class="toggle filters" role="group" aria-label="Show">' +
-        GROUPS.map(function (g) {
-          return '<button type="button" data-filter="' + g + '" aria-pressed="' + (g === filter) + '">' + g + '</button>';
-        }).join("") + '</div>' +
-        '<div class="art art-all">' + shown.map(tile).join("") + '</div>';
+    // The projects the collapsed section shows, in order.
+    var HOME_PICKS = ["DAnGqo", "xDmrgR", "zPkN3Q", "DvEoo0", "VJEGy4", "8bJnLQ", "8bK5zQ", "PXQGa1"];
+    var expanded = false;
+    var filterBar = document.getElementById("art-filters");
+    var artMore = document.getElementById("art-more");
+    var artGrid = document.getElementById("art-grid");
+    filterBar.innerHTML = GROUPS.map(function (g) {
+      return '<button type="button" data-filter="' + g + '" aria-pressed="false">' + g + '</button>';
+    }).join("");
+    filterBar.hidden = false;
+    function renderHomeArt() {
+      var shown;
+      if (filter === "All") {
+        // A pick missing from ART is skipped, so an art-data edit cannot stop the script.
+        shown = HOME_PICKS.map(function (id) {
+          return ART.filter(function (p) { return p.id === id; })[0];
+        }).filter(Boolean);
+        if (expanded) {
+          shown = shown.concat(ART.filter(function (p) { return shown.indexOf(p) < 0; }));
+        }
+      } else {
+        shown = ART.filter(function (p) { return p.group === filter; });
+      }
+      artGrid.innerHTML = shown.map(tile).join("");
+      filterBar.querySelectorAll("button").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.getAttribute("data-filter") === filter));
+      });
+      artMore.parentNode.hidden = filter !== "All";
+      artMore.textContent = expanded ? "Show fewer" : "See all " + ART.length;
+      artMore.setAttribute("aria-expanded", String(expanded));
     }
+    filterBar.addEventListener("click", function (e) {
+      var b = e.target.closest ? e.target.closest("[data-filter]") : null;
+      if (b) {
+        filter = b.getAttribute("data-filter");
+        renderHomeArt();
+      }
+    });
+    artMore.addEventListener("click", function () {
+      expanded = !expanded;
+      renderHomeArt();
+    });
+    renderHomeArt();
     function embedUrl(v) {
       var m = v.match(/youtube\.com\/watch\?v=([\w-]+)/) || v.match(/youtu\.be\/([\w-]+)/);
       if (m) return "https://www.youtube-nocookie.com/embed/" + m[1] + "?rel=0";
@@ -1047,7 +1071,7 @@
         '<h1 class="art-title">' + esc(p.title) + '</h1>';
       var lede = p.text ? '<p class="lede">' + esc(p.text) + '</p>' : "";
       artView.innerHTML =
-        '<p class="back"><a href="#art-all">All design</a></p>' +
+        '<p class="back"><a href="#art">All design</a></p>' +
         (hasVideo ?
           '<div class="art-top"><header class="fl-head art-head">' + heading + '</header>' +
           '<div class="art-about">' + lede + tools + '</div>' + hero(p) + '</div>' :
@@ -1068,13 +1092,6 @@
         arm(artView);
       }
     });
-    artView.addEventListener("click", function (e) {
-      var b = e.target.closest ? e.target.closest("[data-filter]") : null;
-      if (b) {
-        filter = b.getAttribute("data-filter");
-        renderIndex();
-      }
-    });
 
     document.querySelectorAll(".compare").forEach(function (c) {
       var r = c.querySelector(".compare-range");
@@ -1083,12 +1100,12 @@
 
     function route() {
       var h = (location.hash || "").slice(1);
+      // Old links to the removed Design page land on its home section.
+      if (h === "art-all") { h = "art"; }
       var view = "home";
       var proj = null;
       if (h === "flatland") {
         view = "flatland";
-      } else if (h === "art-all") {
-        view = "artindex";
       } else if (h.indexOf("art-") === 0) {
         proj = ART.filter(function (x) { return "art-" + x.id === h; })[0] || null;
         if (proj) { view = "project"; }
@@ -1098,9 +1115,8 @@
       document.querySelectorAll(".page-view").forEach(function (v) { v.hidden = v !== named || view !== "named"; });
       home.hidden = view !== "home";
       flat.hidden = view !== "flatland";
-      artView.hidden = view !== "artindex" && view !== "project";
+      artView.hidden = view !== "project";
       if (view !== "project") { shownProject = null; }
-      if (view === "artindex") { renderIndex(); }
       if (view === "project") { renderProject(proj); }
       if (view !== "home") {
         window.scrollTo(0, 0);
@@ -1174,7 +1190,7 @@
   });
   var hot = null;
   window.addEventListener("scroll", function () { if (hot) { hot.classList.remove("z-hot"); hot = null; } tag.style.visibility = "hidden"; }, { passive: true });
-  var PICK = "img, figure, section, header, p, h1, h2, h3, li, .std, .std-hero, .spec > div, .tb, .phones, .goals > li, .gifs figure, .vid, .viewer, .compare, a.more";
+  var PICK = "img, figure, section, header, p, h1, h2, h3, li, .std, .std-hero, .spec > div, .tb, .phones, .goals > li, .gifs figure, .vid, .viewer, .compare, .more";
   document.addEventListener("mousemove", function (e) {
     if (mode !== "wire") return;
     var el = document.elementFromPoint(e.clientX, e.clientY);
