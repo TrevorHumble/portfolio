@@ -256,7 +256,8 @@
     line-height: 0.9;
     letter-spacing: -0.025em;
   }
-  .fl-shot { width: 100%; border-radius: 4px; }
+  .fl-shot { width: 100%; height: auto; border-radius: 4px; }
+  .fl-guide { display: block; width: 100%; max-width: 900px; height: auto; margin-inline: auto; border-radius: 4px; }
   .fl-sec { border-top: 2px solid var(--ink); margin-top: clamp(40px, 6vw, 72px); padding-block: clamp(32px, 5vw, 56px) 0; }
   .gifs { display: grid; gap: clamp(16px, 3vw, 32px); grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 820px) { .gifs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -583,7 +584,7 @@
       <div class="std-hero"><img data-zoom src="img/flatland-workspace-v3.jpg" alt="Flatland&rsquo;s Vector workspace in Blender, with the cube artwork open" width="1680" height="858"></div>
       <div class="std-body">
         <p class="std-summary">A Blender add-on and vector editor that enhances Blender&rsquo;s curve tools and utilizes its strengths for a whole new way to work with vector graphics.</p>
-        <div class="spec-wrap"><span class="spec-h">Features</span><div class="spec four" aria-label="What Flatland does today"><div><span>Draw</span><ul><li>Shape tools</li><li>Pen and freehand</li><li>Vector workspace</li></ul></div><div><span>Edit</span><ul><li>Bevel corners</li><li>Pathfinder</li><li>Shape Builder</li></ul></div><div><span>Style</span><ul><li>Gradients</li><li>Strokes</li><li>Type</li><li>True color</li></ul></div><div><span>Output</span><ul><li>SVG and PDF</li><li>Browser preview</li></ul></div></div></div>
+        <div class="spec-wrap"><span class="spec-h">Features</span><div class="spec four" aria-label="What Flatland does today"><div><span>Draw</span><ul><li>Shape tools</li><li>Pen and freehand</li><li>Layers and groups</li><li>Vector workspace</li></ul></div><div><span>Edit</span><ul><li>Bevel on any curve</li><li>Pathfinder</li><li>Shape Builder</li><li>Mirror editing</li><li>Clipping paths</li></ul></div><div><span>Style</span><ul><li>Gradients</li><li>Strokes</li><li>Dashed strokes</li><li>Type</li><li>True color</li></ul></div><div><span>Output</span><ul><li>SVG and PDF</li><li>Live text</li><li>Browser preview</li></ul></div></div></div>
       </div>
       <a class="more" href="#flatland">Learn more</a>
     </div>
@@ -647,7 +648,7 @@
       <p class="lede">A Blender add-on and vector editor that enhances Blender&rsquo;s curve tools and utilizes its strengths for a whole new way to work with vector graphics.</p>
     </header>
 
-    <img class="fl-shot" data-zoom src="img/flatland-workspace-v3.jpg" alt="Flatland&rsquo;s Vector workspace in Blender, with the cube artwork open" width="1680" height="858">
+    <img class="fl-shot" src="img/flatland-banner.svg" alt="Flatland, a vector illustration suite for Blender: the name in cream on orange beside the house emblem in a circle, drawn as a selected path" width="1200" height="600">
 
     <section class="fl-sec" aria-labelledby="fl-goals">
       <div class="section-head"><h2 id="fl-goals">Core principles</h2></div>
@@ -662,14 +663,17 @@
     <section class="fl-sec" aria-labelledby="fl-work">
       <div class="section-head"><h2 id="fl-work">Demos</h2></div>
       <div class="gifs">
-        <figure><img src="img/fl-demo-draw.gif" alt="Drawing a rectangle, ellipse, star and hexagon, then a path with the pen" width="800" height="467" loading="lazy"><figcaption><span class="t">Shapes and pen</span> Pick a tool and drag to draw, or click out a path with the pen. Every shape stays an editable curve.</figcaption></figure>
-        <figure><img src="img/fl-demo-type.gif" alt="Typing a word, then changing its font, weight, spacing and slant" width="800" height="467" loading="lazy"><figcaption><span class="t">Type</span> Type on the canvas, then set the font, bold, small caps, spacing and slant.</figcaption></figure>
-        <figure><img src="img/fl-demo-gradient.gif" alt="A linear gradient turned by its handle, given more colors, then switched to radial" width="800" height="467" loading="lazy"><figcaption><span class="t">Gradients</span> Linear or radial, turned from handles on the shape, with as many colors as you like.</figcaption></figure>
-        <figure><img src="img/fl-demo-stroke.gif" alt="A zigzag stroke growing wider, changing its joins and caps, then tapering at both ends" width="800" height="467" loading="lazy"><figcaption><span class="t">Strokes</span> Set the width, joins and caps, then shape the profile so the stroke swells and tapers.</figcaption></figure>
-        <figure><img src="img/fl-demo-shape-builder.gif" alt="Dragging across three overlapping circles merges the touched pieces" width="800" height="467" loading="lazy"><figcaption><span class="t">Shape Builder</span> Drag across overlapping shapes and the pieces you touch merge into one.</figcaption></figure>
+        <figure><img src="img/fl-demo-draw.gif" alt="Drawing a rectangle, circle, star and hexagon, then a wave with the pen" width="800" height="467" loading="lazy"><figcaption><span class="t">Shapes and pen</span> Pick a tool and drag to draw, or click out a path with the pen. Every shape stays an editable curve.</figcaption></figure>
+        <figure><img src="img/fl-demo-type.gif" alt="Typing a word, finding Gravitas One in the font list, then adding small caps, spacing and slant" width="800" height="467" loading="lazy"><figcaption><span class="t">Type</span> Type on the canvas, search your fonts, then set small caps, spacing and slant.</figcaption></figure>
+        <figure><img src="img/fl-demo-gradient.gif" alt="An orange, cream and black gradient turned by its handle, its middle color slid over, then switched to radial" width="800" height="467" loading="lazy"><figcaption><span class="t">Gradients</span> Linear or radial, turned from handles on the shape, with colors you can add and slide.</figcaption></figure>
+        <figure><img src="img/fl-demo-stroke.gif" alt="A zigzag stroke growing wider with round corners and caps, then dashed, the dashes sliding along, then dotted" width="800" height="467" loading="lazy"><figcaption><span class="t">Strokes</span> Set the width, joins and caps, then make it dashed or dotted and slide the pattern along the path.</figcaption></figure>
+        <figure><img src="img/fl-demo-layers.gif" alt="Bringing a square to the front from the layer list, then grouping two shapes and naming the group" width="800" height="467" loading="lazy"><figcaption><span class="t">Layers</span> Every shape gets a row, front to back. Reorder, group and rename, and the SVG keeps the same stack.</figcaption></figure>
+        <figure><img src="img/fl-demo-clip.gif" alt="A circle made into a clipping path that crops a set of stripes, then moved around to show a different part of them" width="800" height="467" loading="lazy"><figcaption><span class="t">Clipping paths</span> Turn any shape into a window over a collection. It crops on screen and in the SVG and PDF.</figcaption></figure>
+        <figure><img src="img/fl-demo-shape-builder.gif" alt="Dragging across three overlapping circles, then pressing Enter, welds the touched pieces into one shape" width="800" height="467" loading="lazy"><figcaption><span class="t">Shape Builder</span> Drag across overlapping shapes, press Enter, and the pieces you touched become one.</figcaption></figure>
         <figure><img src="img/fl-demo-pathfinder.gif" alt="Four pairs of shapes combined with add, subtract, intersect and exclude" width="800" height="467" loading="lazy"><figcaption><span class="t">Pathfinder</span> Add, subtract, intersect and exclude, one pair at a time.</figcaption></figure>
-        <figure><img src="img/fl-demo-bevel.gif" alt="Dragging one corner handle rounds all four corners of a rectangle" width="800" height="467" loading="lazy"><figcaption><span class="t">Bevel</span> Drag one corner handle and every selected corner rounds with it.</figcaption></figure>
-        <figure><img src="img/fl-demo-export.gif" alt="The artwork in Blender, then the same artwork opened in a browser" width="800" height="467" loading="lazy"><figcaption><span class="t">Export</span> Preview the artwork in a browser with one click, or export it as SVG or PDF.</figcaption></figure>
+        <figure><img src="img/fl-demo-bevel.gif" alt="Rounding every corner of a house shape drawn as a plain Blender curve" width="800" height="467" loading="lazy"><figcaption><span class="t">Bevel</span> Round the corners of any curve, even one Flatland didn&rsquo;t draw. Every selected corner rounds together.</figcaption></figure>
+        <figure><img src="img/fl-demo-mirror.gif" alt="With Mirror X on, moving one point of a shape moves its partner on the other side, and the peak stays on the middle line" width="800" height="467" loading="lazy"><figcaption><span class="t">Mirror editing</span> Turn on Mirror X or Y and a point&rsquo;s partner follows every move. Points on the middle line stay on it.</figcaption></figure>
+        <figure><img src="img/fl-demo-export.gif" alt="The artwork in Blender, then the same artwork in a browser, where the word Flatland selects as text" width="800" height="467" loading="lazy"><figcaption><span class="t">Export</span> Preview in a browser with one click, or export SVG or PDF. Text stays real, selectable text in the SVG.</figcaption></figure>
       </div>
       <ul class="also">
         <li>Tools sit in Blender&rsquo;s toolbar with Blender-style hotkeys, in a Vector workspace set up for flat work.</li>
@@ -678,28 +682,30 @@
       </ul>
     </section>
 
+    <section class="fl-sec" aria-labelledby="fl-brand">
+      <div class="section-head"><h2 id="fl-brand">Brand</h2></div>
+      <img class="fl-guide" data-zoom src="img/flatland-brand-guide.png" alt="The Flatland brand guide: the name in six color pairings, the house emblem and small mark, the colors Ink, Paper and Bengal, the typefaces Gravitas One and Old Standard, and the store banner" width="2000" height="3399" loading="lazy">
+    </section>
+
     <section class="fl-sec" aria-labelledby="fl-next">
       <div class="section-head"><h2 id="fl-next">Planned features</h2></div>
       <div class="groups">
         <div><h3>Drawing and editing</h3><ul>
-          <li>Clipping masks</li>
-          <li>Dashed and dotted strokes, and arrowheads</li>
+          <li>Arrowheads</li>
           <li>Turn a stroke into an editable shape</li>
-          <li>Mirror editing and snapping</li>
-          <li>Bevel on any curve, not only Flatland shapes</li>
+          <li>Snapping</li>
           <li>A curvature tool for reshaping paths by dragging anywhere</li>
           <li>A blend tool that builds steps between two shapes</li>
         </ul></div>
         <div><h3>Type</h3><ul>
-          <li>Text as editable curves</li>
           <li>Bullets and numbering</li>
-          <li>Text that stays real text in SVG and PDF</li>
+          <li>Text that stays real text in PDF</li>
         </ul></div>
         <div><h3>Files and layout</h3><ul>
           <li>SVG import as editable shapes</li>
           <li>.ai and .eps import</li>
           <li>A panel showing the SVG code</li>
-          <li>Layers, groups and artboards</li>
+          <li>Artboards</li>
           <li>Reusable symbols from Blender's Asset Browser</li>
         </ul></div>
         <div><h3>Future</h3><ul>
