@@ -1,0 +1,12 @@
+rec/
+web/
+ex/
+final*/
+*.png
+bl.log
+ready
+cmd.py
+cmd.tmp
+out.txt
+out.txt.tmp
+__pycache__/
