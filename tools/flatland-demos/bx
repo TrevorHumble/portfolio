@@ -1,0 +1,6 @@
+#!/bin/bash
+# usage: bx 'python'  or bx < file
+H=$(dirname "$0"); rm -f $H/out.txt
+if [ $# -gt 0 ]; then printf '%s\n' "$1" > $H/cmd.tmp; else cat > $H/cmd.tmp; fi
+mv $H/cmd.tmp $H/cmd.py
+for i in $(seq 1 600); do [ -f $H/out.txt ] && { cat $H/out.txt; exit 0; }; sleep 0.1; done; echo TIMEOUT; exit 1

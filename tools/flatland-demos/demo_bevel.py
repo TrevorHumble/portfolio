@@ -1,0 +1,16 @@
+from common import *
+reset(panel=False)
+bx('''ob=import_logo("flatland-mark-small-ink", 3.0, (0, 0), fill=INK)''')
+jump(*W(2.5, -1.4)); time.sleep(0.8)
+rec_start('bevel'); time.sleep(0.6)
+move(*W(2.3, -0.3), 0.6); time.sleep(0.2)
+key('Tab', pause=0.4); key('a', pause=0.5); key('ctrl+b', pause=0.4)
+move(*W(2.95, -0.35), 1.0); time.sleep(0.2); move(*W(2.6, -0.35), 0.7); time.sleep(0.3); click(pause=0.3); time.sleep(0.8)
+shot('bv2')
+# drag the peak's handle to round it more
+print(bx('print(bpy.context.mode)'))
+time.sleep(0.6)
+key('Tab', pause=0.4)
+bx('bpy.ops.object.select_all(action="DESELECT")')
+move(*W(2.5, -1.8), 0.5); time.sleep(1.5)
+print(rec_stop())
